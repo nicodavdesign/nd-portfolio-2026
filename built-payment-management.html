@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-title="built">Loading...</title>
+  <script src="titles-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Test Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* Video controls on hover only */
+    video {
+      cursor: pointer;
+    }
+
+    /* Lighten video controls - filter approach */
+    video::-webkit-media-controls-panel {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      backdrop-filter: blur(10px);
+    }
+
+    video::-webkit-media-controls {
+      opacity: 0;
+      transition: opacity 0.3s;
+      filter: brightness(1.5) contrast(0.9);
+    }
+
+    video:hover::-webkit-media-controls {
+      opacity: 1;
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger-btn {
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-btn:hover {
+      background-color: #f3f4f6;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-content {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .case-study-link {
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .case-study-link:hover:not(.current) {
+      background-color: #f9fafb;
+      border-color: #e5e7eb;
+    }
+
+    .case-study-link.current {
+      background-color: #f3f4f6;
+      border-color: #d1d5db;
+      cursor: default;
+    }
+
+    .social-link {
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      background-color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Hamburger Button -->
+  <button class="hamburger-btn fixed top-10 right-10 md:top-14 md:right-14 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700">
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenuOnBackdrop(event)">
+    <div class="menu-content" onclick="event.stopPropagation()">
+      <!-- Close Button -->
+      <button class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100 transition-colors" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Navigation Links -->
+      <div class="mb-8">
+        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Navigate</h3>
+        <div class="space-y-2">
+          <a href="index.html" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Home</a>
+          <a href="index.html#work" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Work</a>
+          <a href="index.html#about" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">About</a>
+          <a href="index.html#contact" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Contact</a>
+        </div>
+      </div>
+
+      <!-- Case Studies -->
+      <div class="mb-8 pb-8 border-b border-gray-200">
+        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Case Studies</h3>
+        <div class="space-y-2" id="caseStudyLinks">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div>
+        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Connect</h3>
+        <div class="flex gap-3">
+          <a href="https://www.linkedin.com/in/nicoledavenport/" target="_blank" rel="noopener noreferrer" class="social-link w-10 h-10 flex items-center justify-center rounded">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-gray-600">
+              <path d="M4.983 3.5C4.983 4.60457 4.08857 5.5 2.984 5.5C1.87943 5.5 0.984 4.60457 0.984 3.5C0.984 2.39543 1.87943 1.5 2.984 1.5C4.08857 1.5 4.983 2.39543 4.983 3.5Z" />
+              <path d="M0.999 8.5H5V22.5H0.999V8.5Z" />
+              <path d="M8.5 8.5H12.333V10.311H12.389C12.914 9.311 14.224 8.255 16.199 8.255C20.071 8.255 21 10.803 21 14.161V22.5H16.999V15.156C16.999 13.403 16.967 11.161 14.599 11.161C12.199 11.161 11.833 13.066 11.833 15.031V22.5H7.832V8.5H8.5Z" />
+            </svg>
+          </a>
+          <a href="mailto:Nicole.L.Davenport@gmail.com" class="social-link w-10 h-10 flex items-center justify-center rounded">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-600">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </a>
+          <a href="https://github.com/nicodavdesign" target="_blank" rel="noopener noreferrer" class="social-link w-10 h-10 flex items-center justify-center rounded">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-gray-600">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-screen-xl mx-auto px-15 py-30 md:px-6 md:py-20">
+
+    <!-- Header -->
+    <header class="mb-30 md:mb-20">
+      <h1 class="text-9xl md:text-8xl font-medium leading-[0.95] mb-4 tracking-tight" data-case-study-h1="built">Payment Management Platform</h1>
+      <p class="text-2xl md:text-xl text-gray-500 mb-12 md:mb-10" data-company-name="built">Built Technologies</p>
+      <div class="grid grid-cols-2 gap-12 md:gap-6 text-sm">
+        <div>
+          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Role</div>
+          <div class="leading-relaxed">End-to-end experience design for developers, general contractors, and subcontractors. Collaborated with PM on product strategy, designed and shipped multiple features validated through user research.</div>
+        </div>
+        <div>
+          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Impact</div>
+          <div class="leading-relaxed">Subcontractors got paid in 27 days vs. 55-day industry average (51% faster). $290M processed across 6,000+ organizations in 18 months. Payment management became the #1 feature in sales demos. Solved "unsolvable" lower-tier lien waiver collection problem. Created shared platform language across entire construction payment chain.</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Story -->
+    <section class="max-w-3xl mb-30 md:mb-20">
+      <p class="text-xl md:text-lg leading-relaxed mb-6">When I joined Built, they'd spent a decade focused on lenders. Contractor and subcontractor experiences were designed in silos, creating fragmentation. Through mental modeling, I uncovered the Built Chain insight: developers, contractors, and subs shared nearly identical jobs (collect docs, package payment requests, get paid, pay it forward).</p>
+
+      <p class="text-xl md:text-lg leading-relaxed mb-6">I aligned these experiences so Built could move faster by reusing shared functionality, and users could speak the same visual and operational language when collaborating. The breakthrough: we could decouple documents from requirements, giving every stakeholder instant visibility instead of waiting weeks for paper to move up the chain.</p>
+    </section>
+
+    <!-- Images -->
+    <div class="mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-01-project-overview.png" alt="Project Overview Dashboard" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-02-draws-list.png" alt="Draw Requests List View" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-1 gap-10 md:gap-20 mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-03-sources-uses.png" alt="Sources and Uses Detail - Developer view" class="w-full h-auto block">
+      </div>
+
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-05-draw-error-prevention.png" alt="Draw Error Prevention - General Contractor view" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-04-link-payables.png" alt="Link Payables Side Panel" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="aspect-[16/10] w-full bg-[#F6F8FB] border border-[#E0EDFF] rounded-[30px] md:rounded-[20px] sm:rounded-[8px] flex items-center justify-center mb-30 md:mb-20 overflow-hidden">
+      <video controls playsinline preload="metadata" loop muted autoplay class="max-h-[75%] max-w-[90%] border border-[#DFE1E5] rounded-[7.5px] shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
+        <source src="portfolio-images/built/built-06-payment-flow.mov" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-07-payment-protection.png" alt="Payment Protection Modal" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-08-document-review.png" alt="Document Review Interface" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-09-requirements-setup.png" alt="Requirements Setup Wizard" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="mb-30 md:mb-20">
+      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
+        <img src="portfolio-images/built/built-10-portfolio-list.png" alt="Portfolio List" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <div class="aspect-[16/10] w-full bg-[#F6F8FB] border border-[#E0EDFF] rounded-[30px] md:rounded-[20px] sm:rounded-[8px] flex items-center justify-center mb-30 md:mb-20 overflow-hidden">
+      <video controls playsinline preload="metadata" loop muted autoplay class="max-h-[75%] max-w-[90%] border border-[#DFE1E5] rounded-[7.5px] shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
+        <source src="portfolio-images/built/built-11-billing-periods.mov" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="max-w-3xl my-30 md:my-20 py-15 border-t border-b border-gray-200">
+      <blockquote class="mb-12 last:mb-0 text-lg leading-relaxed text-gray-700 italic">
+        "Before Built, we spent 1–2 hours tracking down compliance docs and cutting checks. Now we can use that time to focus on project financials and see what's going on."
+        <cite class="block mt-3 text-sm not-italic text-gray-500">Melissa Loftin, Project Accountant at Waltz Construction</cite>
+      </blockquote>
+
+      <blockquote class="mb-12 last:mb-0 text-lg leading-relaxed text-gray-700 italic">
+        "Once subcontractors see it work flawlessly the first time and get their money faster, they're happy we switched."
+        <cite class="block mt-3 text-sm not-italic text-gray-500">Lisa Augusto, Project Accountant</cite>
+      </blockquote>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-30 md:mt-20 pt-15 border-t border-gray-200">
+      <a href="index.html" class="text-gray-900 no-underline text-base hover:opacity-60">← Back to all work</a>
+    </footer>
+
+  </div>
+
+  <script>
+    // Populate titles from config
+    const projectKey = 'built';
+    const config = TITLES[projectKey];
+
+    // Update page title
+    document.title = config.pageTitle;
+
+    // Update case study H1
+    const h1 = document.querySelector('[data-case-study-h1="' + projectKey + '"]');
+    if (h1) h1.textContent = config.caseStudyH1;
+
+    // Update company name
+    const company = document.querySelector('[data-company-name="' + projectKey + '"]');
+    if (company) company.textContent = config.companyName;
+
+    // Hamburger Menu Functionality
+    const caseStudies = [
+      { key: 'built', url: 'built-payment-management.html' },
+      { key: 'implentioRedesign', url: 'implentio-redesign-and-demo.html' },
+      { key: 'implentioDesignSystem', url: 'implentio-design-system.html' },
+      { key: 'bambee', url: 'bambee-employment-termination.html' }
+    ];
+
+    // Populate case study links
+    const caseStudyLinksContainer = document.getElementById('caseStudyLinks');
+    caseStudies.forEach(study => {
+      const studyConfig = TITLES[study.key];
+      const isCurrent = study.key === projectKey;
+
+      const link = document.createElement('a');
+      link.href = isCurrent ? '#' : study.url;
+      link.className = 'case-study-link block px-4 py-3 text-base rounded ' + (isCurrent ? 'current' : '');
+
+      const title = document.createElement('div');
+      title.className = 'font-medium mb-1';
+      title.textContent = studyConfig.homepageCardTitle;
+
+      const indicator = document.createElement('span');
+      indicator.className = 'text-xs text-gray-500 ml-2';
+      indicator.textContent = isCurrent ? '(You are here)' : '';
+
+      title.appendChild(indicator);
+      link.appendChild(title);
+
+      caseStudyLinksContainer.appendChild(link);
+    });
+
+    // Toggle menu function
+    function toggleMenu() {
+      const overlay = document.getElementById('menuOverlay');
+      overlay.classList.toggle('active');
+
+      // Prevent body scroll when menu is open
+      if (overlay.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close menu when clicking on backdrop
+    function closeMenuOnBackdrop(event) {
+      if (event.target.id === 'menuOverlay') {
+        toggleMenu();
+      }
+    }
+
+    // Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const overlay = document.getElementById('menuOverlay');
+        if (overlay.classList.contains('active')) {
+          toggleMenu();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
