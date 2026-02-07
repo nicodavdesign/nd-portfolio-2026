@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-title="bambee">Loading...</title>
+  <link rel="icon" type="image/svg+xml" href="portfolio-images/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
   <script src="titles-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Test Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
     /* Hamburger Menu Styles */
     .hamburger-btn { transition: all 0.3s ease; }
     .hamburger-btn:hover { background-color: #f3f4f6; }
@@ -30,12 +28,65 @@
     .case-study-link.current { background-color: #f3f4f6; border-color: #d1d5db; cursor: default; }
     .social-link { transition: all 0.2s ease; }
     .social-link:hover { background-color: #f3f4f6; }
+
+    /* Nav text styles - match homepage */
+    .nav-text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #949494;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .nav-text:hover::after {
+      opacity: 1;
+    }
+
+    .nav-text.active::after {
+      background-color: #000;
+      opacity: 1;
+    }
+
+    /* Company name color */
+    [data-company-name="bambee"] {
+      color: #007E8A;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900">
 
+  <!-- Left Sidebar Navigation (Desktop) -->
+  <nav class="hidden lg:flex fixed left-8 xl:left-12 top-0 h-screen flex-col items-center justify-between pt-16 pb-10 xl:pb-14 z-50">
+    <!-- Logo -->
+    <div>
+      <a href="index.html">
+        <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="h-10 md:h-12">
+      </a>
+    </div>
+
+    <!-- Primary Nav - Section Links -->
+    <div class="flex flex-col space-y-2 items-center w-20">
+      <a href="index.html" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Home</span>
+      </a>
+      <a href="index.html#work" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Work</span>
+      </a>
+      <a href="index.html#about" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">About</span>
+      </a>
+      <a href="index.html#contact" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Contact</span>
+      </a>
+    </div>
+  </nav>
+
   <!-- Hamburger Button -->
-  <button class="hamburger-btn fixed top-10 right-10 md:top-14 md:right-14 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
+  <button class="lg:hidden hamburger-btn fixed top-6 md:top-10 right-6 md:right-10 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700">
       <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
     </svg>
@@ -49,13 +100,20 @@
           <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
+      <!-- Logo -->
       <div class="mb-8">
-        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Navigate</h3>
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+        </svg>
+      </div>
+      <div class="mb-8">
         <div class="space-y-2">
-          <a href="index.html" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Home</a>
-          <a href="index.html#work" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Work</a>
-          <a href="index.html#about" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">About</a>
-          <a href="index.html#contact" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Contact</a>
+          <a href="index.html" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Home</a>
+          <a href="index.html#work" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Work</a>
+          <a href="index.html#about" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">About</a>
+          <a href="index.html#contact" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Contact</a>
         </div>
       </div>
       <div class="mb-8 pb-8 border-b border-gray-200">
@@ -87,97 +145,89 @@
     </div>
   </div>
 
-  <div class="max-w-screen-xl mx-auto px-15 py-30 md:px-6 md:py-20">
+  <div class="case-study-text px-6 md:px-10 py-6 md:py-10 lg:pl-[20vw] lg:pr-16 lg:py-16">
 
     <!-- Header -->
-    <header class="mb-30 md:mb-20">
-      <h1 class="text-9xl md:text-8xl font-medium leading-[0.95] mb-4 tracking-tight" data-case-study-h1="bambee">Employment Termination</h1>
-      <p class="text-2xl md:text-xl text-gray-500 mb-12 md:mb-10" data-company-name="bambee">Bambee</p>
-      <div class="grid grid-cols-2 gap-12 md:gap-6 text-sm">
+    <header class="mb-12 md:mb-16 lg:mb-20">
+      <p class="text-sm uppercase tracking-wider font-medium leading-none mb-4" data-company-name="bambee">Bambee</p>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium leading-none xl:leading-[1.15] mb-12 md:mb-16 lg:mb-20 tracking-tight" data-case-study-h1="bambee">Bambee Employment Termination Workflow</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
         <div>
-          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Role</div>
-          <div class="leading-relaxed">Sole designer. Led research with HR managers, designed and shipped the triage flows with state-specific compliance gates.</div>
+          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Role</div>
+          <ul class="text-base leading-loose list-disc pl-5">
+            <li>Sole designer</li>
+            <li>Led research with HR managers, designed and shipped the triage flows with state-specific compliance gates</li>
+          </ul>
         </div>
         <div>
-          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Impact</div>
-          <div class="leading-relaxed">95% of terminations became self-service, freeing HR managers to focus on the hardest 5%. Turned around Bambee's NPS score. CTO: "The end of employment feature turned around our NPS score."</div>
+          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Impact</div>
+          <ul class="text-base leading-loose list-disc pl-5">
+            <li>95% of terminations became self-service, freeing HR managers to focus on the hardest 5%</li>
+            <li>Turned around Bambee's NPS score</li>
+            <li>CTO: "The end of employment feature turned around our NPS score."</li>
+          </ul>
         </div>
       </div>
     </header>
 
     <!-- Story -->
-    <section class="mb-30 md:mb-20 max-w-3xl">
-      <p class="text-xl md:text-lg leading-relaxed mb-6">Small business owners feared legal exposure. One wrong move could put their livelihood at risk. I shadowed Bambee's HR managers and partnered with their compliance expert to bottle their expertise into a self-service system.</p>
+    <section class="mb-16 md:mb-20 lg:mb-24 max-w-3xl">
+      <p class="leading-loose mb-6">Small business owners feared legal exposure. One wrong move could put their livelihood at risk. I shadowed Bambee's HR managers and partnered with their compliance expert to bottle their expertise into a self-service system.</p>
 
-      <p class="text-xl md:text-lg leading-relaxed mb-6">The insight: some clients tried to soften a firing by calling it a layoff, not realizing the legal risk that created. I designed a three-layer triage (safety → compliance → emotion) that routed high-risk cases to human support while enabling routine terminations to happen confidently without waiting.</p>
+      <p class="leading-loose mb-6">The insight: some clients tried to soften a firing by calling it a layoff, not realizing the legal risk that created. I designed a three-layer triage (safety → compliance → emotion) that routed high-risk cases to human support while enabling routine terminations to happen confidently without waiting.</p>
     </section>
 
     <!-- Image 1: High-Risk Decision Point (COVER) -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-01-risk-assessment-high.png" alt="High-Risk Decision Point showing risk-aware triage" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-cover.png" alt="Bambee Employment Termination Workflow" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 2: HR Requests Landing Page -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-02-hr-requests-landing.png" alt="HR Requests Landing Page" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-02-hr-requests-landing.png" alt="HR Requests Landing Page" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 3: Safety Check -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-03-safety-check.png" alt="Safety Check" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-03-safety-check.png" alt="Safety Check" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 4: Emotional Check-In -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-04-emotional-checkin.png" alt="Emotional Check-In" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-04-emotional-checkin.png" alt="Emotional Check-In" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 5: Compliance Tip -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-05-compliance-tip.png" alt="Compliance Tip" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-05-compliance-tip.png" alt="Compliance Tip" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 6: Termination Reason Selection -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-06-termination-reason.png" alt="Termination Reason Selection" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-06-termination-reason.png" alt="Termination Reason Selection" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 7: Employee Performance History -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-07-performance-history.png" alt="Employee Performance History" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-07-performance-history.png" alt="Employee Performance History" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 8: Simple Deactivation Confirmation -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#D1F5F5]">
-        <img src="portfolio-images/bambee/bambee-08-simple-deactivation.png" alt="Simple Deactivation Confirmation" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F8FCFC] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/bambee/bambee-08-simple-deactivation.png" alt="Simple Deactivation Confirmation" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Testimonial -->
-    <section class="max-w-3xl my-30 md:my-20 py-15 border-t border-b border-gray-200">
-      <blockquote class="text-lg leading-relaxed text-gray-700 italic">
-        "The end of employment feature turned around our NPS score."
-        <cite class="block mt-3 text-sm not-italic text-gray-500">Mike Ruangutai, former CTO of Bambee</cite>
-      </blockquote>
+    <section class="max-w-3xl my-16 md:my-20 lg:my-24 py-8 md:py-12">
+      <div>
+        <p class="leading-loose mb-2">"The end of employment feature turned around our NPS score."</p>
+        <p class="leading-loose">—<span class="font-medium">Mike Ruangutai, former CTO of Bambee</span></p>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="mt-30 md:mt-20 pt-15 border-t border-gray-200">
+    <footer class="mt-16 md:mt-20 lg:mt-24 pt-8 md:pt-12">
       <a href="index.html" class="text-gray-900 no-underline text-base hover:opacity-60">← Back to all work</a>
     </footer>
 
@@ -212,7 +262,7 @@
       const isCurrent = study.key === projectKey;
       const link = document.createElement('a');
       link.href = isCurrent ? '#' : study.url;
-      link.className = 'case-study-link block px-4 py-3 text-base rounded ' + (isCurrent ? 'current' : '');
+      link.className = 'case-study-link block py-3 text-base rounded ' + (isCurrent ? 'current' : '');
       const title = document.createElement('div');
       title.className = 'font-medium mb-1';
       title.textContent = studyConfig.homepageCardTitle;

@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nicole Davenport - Senior Product Designer</title>
   <link rel="icon" type="image/svg+xml" href="portfolio-images/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
   <script src="titles-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Test Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      overflow-x: hidden;
-    }
 
     /* Smooth scrolling */
     html {
@@ -19,32 +16,209 @@
       overflow-x: hidden;
     }
 
-    /* Project card hover effect */
-    .project-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Work card 2-column grid */
+    .work-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
     }
 
-    .project-card:hover {
-      transform: translateY(-4px);
+    @media (min-width: 1280px) {
+      .work-card-grid {
+        gap: 12rem;
+      }
     }
 
-    .project-card img {
-      transition: opacity 0.3s ease;
+    @media (min-width: 1536px) {
+      .work-card-grid {
+        gap: 16rem;
+      }
     }
 
-    .project-card:hover img {
-      opacity: 0.9;
+    .work-card-text {
+      grid-column: 1;
     }
 
-    /* Sidebar navigation - only custom pseudo-element styling */
-    .nav-text.active::after {
+    .work-card-image-wrapper {
+      grid-column: 2;
+      grid-row: 1;
+      position: relative;
+      min-height: 30rem;
+      overflow: visible;
+    }
+
+    .work-card-image-container {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: auto;
+      height: auto;
+    }
+
+    .work-card-image {
+      height: 30rem;
+      width: auto;
+      max-width: none;
+      display: block;
+      filter: grayscale(100%);
+      border-radius: 10px;
+      border: 2px solid #DFE1E5;
+      transition: transform 0.15s ease-in-out, filter 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .work-card:hover .work-card-image {
+      filter: grayscale(0%);
+      transform: scale(1.1);
+      box-shadow: 46px 173px 50px 0 rgba(0, 0, 0, 0.00), 30px 111px 46px 0 rgba(0, 0, 0, 0.01), 17px 62px 39px 0 rgba(0, 0, 0, 0.03), 7px 28px 29px 0 rgba(0, 0, 0, 0.04), 2px 7px 16px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    /* Mobile work card image - colored by default */
+    .work-card-image-mobile {
+      border-radius: 10px;
+      border: 2px solid #DFE1E5;
+    }
+
+    /* Mobile company name colors - always visible */
+    .work-card-mobile-content[data-company="built"] [data-company-name="built"] {
+      color: #0C66ED;
+    }
+
+    .work-card-mobile-content[data-company="implentioRedesign"] [data-company-name="implentioRedesign"],
+    .work-card-mobile-content[data-company="implentioDesignSystem"] [data-company-name="implentioDesignSystem"] {
+      color: #5642CE;
+    }
+
+    .work-card-mobile-content[data-company="bambee"] [data-company-name="bambee"] {
+      color: #007E8A;
+    }
+
+    /* About section 2-column grid */
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1280px) {
+      .about-grid {
+        gap: 12rem;
+      }
+    }
+
+    @media (min-width: 1536px) {
+      .about-grid {
+        gap: 16rem;
+      }
+    }
+
+    .about-text {
+      grid-column: 1;
+    }
+
+    .about-image {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      margin-left: auto;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%);
+      transition: none;
+      border-radius: 0.5rem;
+    }
+
+    .about-grid:hover .about-image img {
+      filter: grayscale(0%);
+    }
+
+
+    /* Company name colors on hover - Work cards only */
+    .work-card:hover .work-card-grid [data-company-name="built"] {
+      color: #0C66ED;
+    }
+
+    .work-card:hover .work-card-grid [data-company-name="implentioRedesign"],
+    .work-card:hover .work-card-grid [data-company-name="implentioDesignSystem"] {
+      color: #5642CE;
+    }
+
+    .work-card:hover .work-card-grid [data-company-name="bambee"] {
+      color: #007E8A;
+    }
+
+    /* Work card arrows - match button/link hover underline color */
+    .work-card svg {
+      color: #949494;
+    }
+
+    /* Down arrow bounce animation */
+    @keyframes arrow-bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(8px);
+      }
+    }
+
+    .arrow-animate {
+      animation: arrow-bounce 1.5s ease-in-out infinite;
+    }
+
+    /* Nav hover underline */
+    .nav-text::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       height: 2px;
-      background-color: #111827;
+      background-color: #949494;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .nav-text:hover::after {
+      opacity: 1;
+    }
+
+    /* Nav active state - overrides hover */
+    .nav-text.active::after {
+      background-color: #000;
+      opacity: 1;
+    }
+
+    /* Contact email paragraph - override global p styles */
+    .contact-email {
+      line-height: 1.25;
+    }
+
+    /* Contact links hover - gray-500 text and underline */
+    .contact-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #949494;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .contact-link:hover {
+      color: #6b7280;
+    }
+
+    .contact-link:hover::after {
+      opacity: 1;
     }
 
     /* Mobile Menu Styles */
@@ -94,29 +268,29 @@
     <!-- Logo -->
     <div>
       <a href="#hola">
-        <img src="portfolio-images/logo.png" alt="Nicole Davenport" class="h-10 md:h-12">
+        <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="h-10 md:h-12">
       </a>
     </div>
 
     <!-- Primary Nav - Section Links -->
     <div class="flex flex-col space-y-2 items-center w-20">
       <a href="#hola" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group" data-section="hola">
-        <span class="nav-text p-0.5 text-xs uppercase tracking-wider font-medium relative text-gray-600 group-hover:text-gray-900 transition-colors">Hello!</span>
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Hello!</span>
       </a>
       <a href="#work" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group" data-section="work">
-        <span class="nav-text p-0.5 text-xs uppercase tracking-wider font-medium relative text-gray-600 group-hover:text-gray-900 transition-colors">Work</span>
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Work</span>
       </a>
       <a href="#about" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group" data-section="about">
-        <span class="nav-text p-0.5 text-xs uppercase tracking-wider font-medium relative text-gray-600 group-hover:text-gray-900 transition-colors">About</span>
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">About</span>
       </a>
       <a href="#contact" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group" data-section="contact">
-        <span class="nav-text p-0.5 text-xs uppercase tracking-wider font-medium relative text-gray-600 group-hover:text-gray-900 transition-colors">Contact</span>
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Contact</span>
       </a>
     </div>
   </nav>
 
   <!-- Mobile Hamburger Menu -->
-  <button class="lg:hidden hamburger-btn fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
+  <button class="lg:hidden hamburger-btn fixed top-6 md:top-10 right-6 md:right-10 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -127,40 +301,38 @@
   <!-- Mobile Menu Overlay -->
   <div class="lg:hidden menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu(event)">
     <div class="menu-content" onclick="event.stopPropagation()">
-      <button class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100 transition-colors" onclick="toggleMenu()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-
-      <!-- Logo in mobile menu -->
-      <div class="mb-8 pb-6 border-b border-gray-200">
-        <img src="portfolio-images/logo.png" alt="Nicole Davenport" class="h-10">
+      <!-- Logo and close button header -->
+      <div class="flex items-center justify-between mb-8 pb-6 border-b border-gray-200">
+        <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="w-5 h-auto">
+        <button class="w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100 transition-colors" onclick="toggleMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
 
       <div>
-        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Navigate</h3>
         <div class="space-y-2">
-          <a href="#hola" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors" onclick="toggleMenu()">Hello!</a>
-          <a href="#work" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors" onclick="toggleMenu()">Work</a>
-          <a href="#about" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors" onclick="toggleMenu()">About</a>
-          <a href="#contact" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors" onclick="toggleMenu()">Contact</a>
+          <a href="#hola" class="block py-3 text-base hover:bg-gray-50 transition-colors" onclick="toggleMenu()">Hello!</a>
+          <a href="#work" class="block py-3 text-base hover:bg-gray-50 transition-colors" onclick="toggleMenu()">Work</a>
+          <a href="#about" class="block py-3 text-base hover:bg-gray-50 transition-colors" onclick="toggleMenu()">About</a>
+          <a href="#contact" class="block py-3 text-base hover:bg-gray-50 transition-colors" onclick="toggleMenu()">Contact</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Hero / Hola Section -->
-  <section id="hola" class="min-h-screen flex flex-col justify-end pb-6 xl:pb-14 px-6 lg:px-0 lg:pl-[20vw] lg:pr-14 xl:pr-20">
+  <section id="hola" class="min-h-screen flex flex-col justify-end pb-10 xl:pb-14 mb-16 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
     <!-- Main content -->
     <div>
-      <h1 class="text-7xl md:text-8xl lg:text-9xl font-medium leading-tight mb-12 tracking-tight max-w-5xl">
+      <h1 class="text-7xl md:text-8xl lg:text-9xl font-medium leading-none md:leading-none lg:leading-none xl:leading-tight mb-12 tracking-tight max-w-5xl">
         Nicole Davenport
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mb-28" style="line-height: 1.75;">
+      <p class=" max-w-3xl mb-12">
         Senior Product Designer bringing clarity to complex B2B workflows, designing systems where machines handle the repetitive work and people focus on what actually requires judgment.
       </p>
 
@@ -172,106 +344,230 @@
   </section>
 
   <!-- Work -->
-  <section id="work" class="min-h-[80vh] flex flex-col justify-between pt-6 lg:pt-16 pb-6 xl:pb-14 px-6 lg:px-0 lg:pl-[20vw] lg:pr-14 xl:pr-20">
+  <section id="work" class="min-h-[80vh] flex flex-col justify-between pt-6 md:pt-10 pb-32 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
     <div>
-      <h2 class="text-6xl md:text-5xl font-medium mb-48 tracking-tight">Selected Work</h2>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-48 tracking-tight">Selected Work</h2>
 
-      <div class="grid grid-cols-1 gap-32 mb-48">
+      <div class="flex flex-col gap-64">
 
         <!-- Project 1: Built Technologies -->
-        <a href="built-payment-management.html" class="project-card block group">
-          <div class="mb-6 overflow-hidden rounded-lg">
-            <img src="portfolio-images/built/built-cover.png" alt="Built Payment Management" class="w-full h-auto">
+        <a href="built-payment-management.html" class="work-card block group">
+          <!-- Mobile/Tablet: Stacked layout -->
+          <div class="lg:hidden work-card-mobile-content" data-company="built">
+            <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
+              <img src="portfolio-images/built/built-cover.png" alt="Built Payment Management" class="work-card-image-mobile w-full h-auto">
+            </div>
+            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+              <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="built">Built Technologies</p>
+              <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="built">Built Payment Management</p>
+            <p class="" data-homepage-card-subtitle="built">Payment and compliance platform reducing payment time from 55 days to 27 days</p>
           </div>
-          <p class="text-sm uppercase tracking-wide text-gray-500 mb-2" data-company-name="built">Built Technologies</p>
-          <h3 class="text-3xl md:text-2xl font-medium mb-3 group-hover:text-gray-600 transition-colors" data-homepage-card-title="built">Built Payment Management</h3>
-          <p class="text-lg md:text-base text-gray-600 leading-relaxed" data-homepage-card-subtitle="built">Payment and compliance platform reducing payment time from 55 days to 27 days</p>
+
+          <!-- Desktop: 3-column grid layout -->
+          <div class="hidden lg:grid work-card-grid">
+            <div class="work-card-text">
+              <div class="flex items-center gap-4 mb-6">
+                <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="built">Built Technologies</p>
+                <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                  <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="built">Built Payment Management</p>
+              <p class="" data-homepage-card-subtitle="built">Payment and compliance platform reducing payment time from 55 days to 27 days</p>
+            </div>
+            <div class="work-card-image-wrapper">
+              <div class="work-card-image-container">
+                <img src="portfolio-images/built/built-cover.png" alt="Built Payment Management" class="work-card-image">
+              </div>
+            </div>
+          </div>
         </a>
 
         <!-- Project 2: Implentio Redesign + Demo -->
-        <a href="implentio-redesign-and-demo.html" class="project-card block group">
-          <div class="mb-6 overflow-hidden rounded-lg">
-            <img src="portfolio-images/implentio-redesign-demo/implentio-demo-cover.png" alt="Implentio App Redesign + Vibe-Coded Demo" class="w-full h-auto">
+        <a href="implentio-redesign-and-demo.html" class="work-card block group">
+          <!-- Mobile/Tablet: Stacked layout -->
+          <div class="lg:hidden work-card-mobile-content" data-company="implentioRedesign">
+            <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
+              <img src="portfolio-images/implentio-redesign-demo/implentio-redesign-demo-cover.png" alt="Implentio App Redesign + Vibe-Coded Demo" class="work-card-image-mobile w-full h-auto">
+            </div>
+            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+              <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioRedesign">Implentio</p>
+              <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioRedesign">Implentio App Redesign + Vibe-Coded Demo</p>
+            <p class="" data-homepage-card-subtitle="implentioRedesign">Production-ready sales demo freeing engineering for mission-critical work</p>
           </div>
-          <p class="text-sm uppercase tracking-wide text-gray-500 mb-2" data-company-name="implentioRedesign">Implentio</p>
-          <h3 class="text-3xl md:text-2xl font-medium mb-3 group-hover:text-gray-600 transition-colors" data-homepage-card-title="implentioRedesign">Implentio App Redesign + Vibe-Coded Demo</h3>
-          <p class="text-lg md:text-base text-gray-600 leading-relaxed" data-homepage-card-subtitle="implentioRedesign">Production-ready sales demo freeing engineering for mission-critical work</p>
+
+          <!-- Desktop: 3-column grid layout -->
+          <div class="hidden lg:grid work-card-grid">
+            <div class="work-card-text">
+              <div class="flex items-center gap-4 mb-6">
+                <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioRedesign">Implentio</p>
+                <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                  <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioRedesign">Implentio App Redesign + Vibe-Coded Demo</p>
+              <p class="" data-homepage-card-subtitle="implentioRedesign">Production-ready sales demo freeing engineering for mission-critical work</p>
+            </div>
+            <div class="work-card-image-wrapper">
+              <div class="work-card-image-container">
+                <img src="portfolio-images/implentio-redesign-demo/implentio-redesign-demo-cover.png" alt="Implentio App Redesign + Vibe-Coded Demo" class="work-card-image">
+              </div>
+            </div>
+          </div>
         </a>
 
         <!-- Project 3: Design System Evolution -->
-        <a href="implentio-design-system.html" class="project-card block group">
-          <div class="mb-6 overflow-hidden rounded-lg">
-            <img src="portfolio-images/implentio-design-system/implentio-design-system-cover.png" alt="Implentio Design System Evolution" class="w-full h-auto">
+        <a href="implentio-design-system.html" class="work-card block group">
+          <!-- Mobile/Tablet: Stacked layout -->
+          <div class="lg:hidden work-card-mobile-content" data-company="implentioDesignSystem">
+            <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
+              <img src="portfolio-images/implentio-design-system/implentio-design-system-cover.png" alt="Implentio Design System Evolution" class="work-card-image-mobile w-full h-auto">
+            </div>
+            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+              <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioDesignSystem">Implentio</p>
+              <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioDesignSystem">Implentio Design System Evolution</p>
+            <p class="" data-homepage-card-subtitle="implentioDesignSystem">Design system evolution positioning design to ship independently</p>
           </div>
-          <p class="text-sm uppercase tracking-wide text-gray-500 mb-2" data-company-name="implentioDesignSystem">Implentio</p>
-          <h3 class="text-3xl md:text-2xl font-medium mb-3 group-hover:text-gray-600 transition-colors" data-homepage-card-title="implentioDesignSystem">Implentio Design System Evolution</h3>
-          <p class="text-lg md:text-base text-gray-600 leading-relaxed" data-homepage-card-subtitle="implentioDesignSystem">Design system evolution positioning design to ship independently</p>
+
+          <!-- Desktop: 3-column grid layout -->
+          <div class="hidden lg:grid work-card-grid">
+            <div class="work-card-text">
+              <div class="flex items-center gap-4 mb-6">
+                <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioDesignSystem">Implentio</p>
+                <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                  <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioDesignSystem">Implentio Design System Evolution</p>
+              <p class="" data-homepage-card-subtitle="implentioDesignSystem">Design system evolution positioning design to ship independently</p>
+            </div>
+            <div class="work-card-image-wrapper">
+              <div class="work-card-image-container">
+                <img src="portfolio-images/implentio-design-system/implentio-design-system-cover.png" alt="Implentio Design System Evolution" class="work-card-image">
+              </div>
+            </div>
+          </div>
         </a>
 
         <!-- Project 4: Bambee -->
-        <a href="bambee-employment-termination.html" class="project-card block group">
-          <div class="mb-6 overflow-hidden rounded-lg">
-            <img src="portfolio-images/bambee/bambee-cover.png" alt="Bambee Employment Termination" class="w-full h-auto">
+        <a href="bambee-employment-termination.html" class="work-card block group">
+          <!-- Mobile/Tablet: Stacked layout -->
+          <div class="lg:hidden work-card-mobile-content" data-company="bambee">
+            <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
+              <img src="portfolio-images/bambee/bambee-cover.png" alt="Bambee Employment Termination" class="work-card-image-mobile w-full h-auto">
+            </div>
+            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+              <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="bambee">Bambee</p>
+              <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="bambee">Bambee Employment Termination Workflow</p>
+            <p class="" data-homepage-card-subtitle="bambee">Guided employee termination workflow that turned around Series B NPS</p>
           </div>
-          <p class="text-sm uppercase tracking-wide text-gray-500 mb-2" data-company-name="bambee">Bambee</p>
-          <h3 class="text-3xl md:text-2xl font-medium mb-3 group-hover:text-gray-600 transition-colors" data-homepage-card-title="bambee">Bambee Employment Termination Workflow</h3>
-          <p class="text-lg md:text-base text-gray-600 leading-relaxed" data-homepage-card-subtitle="bambee">Guided employee termination workflow that turned around Series B NPS</p>
+
+          <!-- Desktop: 3-column grid layout -->
+          <div class="hidden lg:grid work-card-grid">
+            <div class="work-card-text">
+              <div class="flex items-center gap-4 mb-6">
+                <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="bambee">Bambee</p>
+                <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
+                  <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="bambee">Bambee Employment Termination Workflow</p>
+              <p class="" data-homepage-card-subtitle="bambee">Guided employee termination workflow that turned around Series B NPS</p>
+            </div>
+            <div class="work-card-image-wrapper">
+              <div class="work-card-image-container">
+                <img src="portfolio-images/bambee/bambee-cover.png" alt="Bambee Employment Termination" class="work-card-image">
+              </div>
+            </div>
+          </div>
         </a>
 
       </div>
     </div>
-
-    <!-- Decorative line -->
-    <div class="w-full h-[1px] bg-gray-200"></div>
   </section>
 
   <!-- About -->
-  <section id="about" class="min-h-[80vh] lg:min-h-screen flex flex-col justify-between pt-6 lg:pt-16 pb-6 xl:pb-14 px-6 lg:px-0 lg:pl-[20vw] lg:pr-14 xl:pr-20">
+  <section id="about" class="min-h-[80vh] lg:min-h-screen flex flex-col justify-between pt-6 md:pt-10 pb-32 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
     <div class="w-full">
-      <h2 class="text-6xl md:text-5xl font-medium mb-48 tracking-tight">About</h2>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-48 tracking-tight">About</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-6 lg:gap-8 items-start lg:max-w-6xl mb-48">
-        <div class="col-span-12 md:col-span-3 order-2 md:order-none">
+      <!-- Mobile/Tablet: Stacked layout -->
+      <div class="lg:hidden">
+        <div class="mb-10">
           <img src="portfolio-images/nicole-davenport-headshot.png" alt="Nicole Davenport" class="w-full h-auto rounded-lg">
         </div>
-        <div class="col-span-12 md:col-span-9 order-1 md:order-none space-y-6">
-          <p class="text-xl md:text-lg text-gray-700 leading-relaxed">
-            I design products that bring clarity to complex workflows. Over the past several years, I've worked in construction finance, HR compliance, and e-commerce operations, solving problems where the stakes are high and the systems are messy. Before design, I ran a startup and created content, both of which taught me to validate assumptions, prioritize ruthlessly, and communicate clearly. That foundation shows up in how I work today.
+        <div class="space-y-6">
+          <p class="">
+            I design products that bring clarity to complex workflows. I've worked across construction finance, HR compliance, and e-commerce operations, solving high-stakes problems in messy, interconnected systems. Before design, I ran a startup where I learned to validate assumptions, prioritize ruthlessly, and communicate clearly.
           </p>
-          <p class="text-xl md:text-lg text-gray-700 leading-relaxed">
-            Outside of work, you'll find me exploring new places, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. I'm based in Los Angeles now, but planning a move to Sydney in the next couple years.
+          <p class="">
+            Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. I'll be relocating from Los Angeles to Sydney in 2026.
           </p>
         </div>
       </div>
-    </div>
 
-    <!-- Decorative line -->
-    <div class="w-full h-[1px] bg-gray-200"></div>
+      <!-- Desktop: 3-column grid layout -->
+      <div class="hidden lg:grid about-grid">
+        <div class="about-text">
+          <p class=" mb-6">
+            I design products that bring clarity to complex workflows. I've worked across construction finance, HR compliance, and e-commerce operations, solving high-stakes problems in messy, interconnected systems. Before design, I ran a startup where I learned to validate assumptions, prioritize ruthlessly, and communicate clearly.
+          </p>
+          <p class="">
+            Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. I'll be relocating from Los Angeles to Sydney in 2026.
+          </p>
+        </div>
+        <div class="about-image">
+          <img src="portfolio-images/nicole-davenport-headshot.png" alt="Nicole Davenport">
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="min-h-screen flex flex-col pt-6 lg:pt-16 pb-6 xl:pb-16 px-6 lg:px-0 lg:pl-[20vw] lg:pr-14 xl:pr-20">
+  <section id="contact" class="min-h-screen flex flex-col pt-6 md:pt-10 pb-6 xl:pb-16 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
     <!-- Heading at top -->
-    <div>
-      <h2 class="text-6xl md:text-5xl font-medium tracking-tight">Get in Touch</h2>
+    <div class="mb-48">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight">Get in Touch</h2>
     </div>
 
-    <!-- Contact details centered -->
-    <div class="flex-grow flex items-center">
-      <div class="space-y-4 text-xl md:text-lg">
-        <div>
-          <a href="mailto:Nicole.L.Davenport@gmail.com" class="text-gray-600 hover:text-gray-900 transition-colors">Nicole.L.Davenport@gmail.com</a>
-        </div>
-        <div class="flex gap-6 text-base">
-          <a href="https://www.linkedin.com/in/nicoledavenport/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">LinkedIn</a>
-          <a href="https://github.com/nicodavdesign" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">GitHub</a>
+    <!-- Contact details and footer wrapper -->
+    <div class="flex-grow flex flex-col justify-between">
+      <!-- Contact details -->
+      <div>
+        <!-- Arrow -->
+        <svg width="23" height="69" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-300 mb-8">
+          <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
+        </svg>
+
+        <p class="contact-email mb-8">
+          <a href="mailto:hello@nicoledavenport.design" class="contact-link relative inline-block p-0.5 text-black transition-colors">hello@nicoledavenport.design</a>
+        </p>
+        <div class="flex gap-2">
+          <a href="https://www.linkedin.com/in/nicoledavenport/" target="_blank" rel="noopener noreferrer" class="contact-link relative inline-block p-0.5 text-sm uppercase tracking-wider font-medium leading-none text-black transition-colors">LinkedIn</a>
+          <a href="https://github.com/nicodavdesign" target="_blank" rel="noopener noreferrer" class="contact-link relative inline-block p-0.5 text-sm uppercase tracking-wider font-medium leading-none text-black transition-colors">GitHub</a>
         </div>
       </div>
-    </div>
 
-    <!-- Footer at bottom -->
-    <div>
-      <p class="text-sm text-gray-500">© 2026 Nicole Davenport. Designed in Figma. Built with Claude Code.</p>
+      <!-- Footer at bottom -->
+      <div>
+        <p class="text-sm text-gray-500">© 2026 Nicole Davenport. Designed in Figma. Built with Claude Code.</p>
+      </div>
     </div>
   </section>
 
@@ -282,18 +578,41 @@
     projectKeys.forEach(key => {
       const config = TITLES[key];
 
-      // Update company name
-      const companyName = document.querySelector('[data-company-name="' + key + '"]');
-      if (companyName) companyName.textContent = config.companyName;
+      // Update company name - both desktop and mobile
+      const companyNames = document.querySelectorAll('[data-company-name="' + key + '"]');
+      companyNames.forEach(el => el.textContent = config.companyName);
 
-      // Update card title
-      const cardTitle = document.querySelector('[data-homepage-card-title="' + key + '"]');
-      if (cardTitle) cardTitle.textContent = config.homepageCardTitle;
+      // Update card title - both desktop and mobile
+      const cardTitles = document.querySelectorAll('[data-homepage-card-title="' + key + '"]');
+      cardTitles.forEach(el => el.textContent = config.homepageCardTitle);
 
-      // Update card subtitle
-      const cardSubtitle = document.querySelector('[data-homepage-card-subtitle="' + key + '"]');
-      if (cardSubtitle) cardSubtitle.textContent = config.homepageCardSubtitle;
+      // Update card subtitle - both desktop and mobile
+      const cardSubtitles = document.querySelectorAll('[data-homepage-card-subtitle="' + key + '"]');
+      cardSubtitles.forEach(el => el.textContent = config.homepageCardSubtitle);
     });
+
+    // Down arrow scroll indicator with delayed animation
+    (function() {
+      const arrow = document.querySelector('#hola svg');
+      if (!arrow) return;
+
+      let scrollTimeout;
+      let hasScrolled = false;
+
+      // Add animation class after 4 seconds if no scroll
+      const animationTimer = setTimeout(() => {
+        if (!hasScrolled) {
+          arrow.classList.add('arrow-animate');
+        }
+      }, 4000);
+
+      // Remove animation on scroll
+      window.addEventListener('scroll', () => {
+        hasScrolled = true;
+        arrow.classList.remove('arrow-animate');
+        clearTimeout(animationTimer);
+      }, { once: true });
+    })();
 
     // Navigation: Smooth scroll + Active state tracking
     (function() {
@@ -345,10 +664,10 @@
         navLinks.forEach(link => {
           const textSpan = link.querySelector('.nav-text');
           textSpan.classList.remove('active');
-          textSpan.classList.remove('!text-gray-900');
+          textSpan.classList.remove('!text-black');
           if (link.getAttribute('data-section') === current) {
             textSpan.classList.add('active');
-            textSpan.classList.add('!text-gray-900');
+            textSpan.classList.add('!text-black');
           }
         });
       }

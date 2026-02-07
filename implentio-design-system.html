@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-title="implentioDesignSystem">Loading...</title>
+  <link rel="icon" type="image/svg+xml" href="portfolio-images/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
   <script src="titles-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Test Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
     /* Hamburger Menu Styles */
     .hamburger-btn { transition: all 0.3s ease; }
     .hamburger-btn:hover { background-color: #f3f4f6; }
@@ -30,12 +28,65 @@
     .case-study-link.current { background-color: #f3f4f6; border-color: #d1d5db; cursor: default; }
     .social-link { transition: all 0.2s ease; }
     .social-link:hover { background-color: #f3f4f6; }
+
+    /* Nav text styles - match homepage */
+    .nav-text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #949494;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .nav-text:hover::after {
+      opacity: 1;
+    }
+
+    .nav-text.active::after {
+      background-color: #000;
+      opacity: 1;
+    }
+
+    /* Company name color */
+    [data-company-name="implentioDesignSystem"] {
+      color: #5642CE;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900">
 
+  <!-- Left Sidebar Navigation (Desktop) -->
+  <nav class="hidden lg:flex fixed left-8 xl:left-12 top-0 h-screen flex-col items-center justify-between pt-16 pb-10 xl:pb-14 z-50">
+    <!-- Logo -->
+    <div>
+      <a href="index.html">
+        <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="h-10 md:h-12">
+      </a>
+    </div>
+
+    <!-- Primary Nav - Section Links -->
+    <div class="flex flex-col space-y-2 items-center w-20">
+      <a href="index.html" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Home</span>
+      </a>
+      <a href="index.html#work" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Work</span>
+      </a>
+      <a href="index.html#about" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">About</span>
+      </a>
+      <a href="index.html#contact" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Contact</span>
+      </a>
+    </div>
+  </nav>
+
   <!-- Hamburger Button -->
-  <button class="hamburger-btn fixed top-10 right-10 md:top-14 md:right-14 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
+  <button class="lg:hidden hamburger-btn fixed top-6 md:top-10 right-6 md:right-10 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700">
       <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
     </svg>
@@ -49,13 +100,20 @@
           <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
+      <!-- Logo -->
       <div class="mb-8">
-        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Navigate</h3>
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+        </svg>
+      </div>
+      <div class="mb-8">
         <div class="space-y-2">
-          <a href="index.html" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Home</a>
-          <a href="index.html#work" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Work</a>
-          <a href="index.html#about" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">About</a>
-          <a href="index.html#contact" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Contact</a>
+          <a href="index.html" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Home</a>
+          <a href="index.html#work" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Work</a>
+          <a href="index.html#about" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">About</a>
+          <a href="index.html#contact" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Contact</a>
         </div>
       </div>
       <div class="mb-8 pb-8 border-b border-gray-200">
@@ -87,92 +145,86 @@
     </div>
   </div>
 
-  <div class="max-w-screen-xl mx-auto px-15 py-30 md:px-6 md:py-20">
+  <div class="case-study-text px-6 md:px-10 py-6 md:py-10 lg:pl-[20vw] lg:pr-16 lg:py-16">
 
     <!-- Header -->
-    <header class="mb-30 md:mb-20">
-      <h1 class="text-9xl md:text-8xl font-medium leading-[0.95] mb-4 tracking-tight" data-case-study-h1="implentioDesignSystem">Design System Evolution</h1>
-      <p class="text-2xl md:text-xl text-gray-500 mb-12 md:mb-10" data-company-name="implentioDesignSystem">Implentio</p>
-      <div class="grid grid-cols-2 gap-12 md:gap-6 text-sm">
+    <header class="mb-12 md:mb-16 lg:mb-20">
+      <p class="text-sm uppercase tracking-wider font-medium leading-none mb-4" data-company-name="implentioDesignSystem">Implentio</p>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium leading-none xl:leading-[1.15] mb-12 md:mb-16 lg:mb-20 tracking-tight" data-case-study-h1="implentioDesignSystem">Implentio Design System Evolution</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
         <div>
-          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Role</div>
-          <div class="leading-relaxed">Audited and evolved the existing design system. Introduced tokenized color, typography, and spacing foundations using Token Studio. Established interaction and visual differentiation rules.</div>
+          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Role</div>
+          <ul class="text-base leading-loose list-disc pl-5">
+            <li>Audited and evolved the existing design system</li>
+            <li>Introduced tokenized color, typography, and spacing foundations using Token Studio</li>
+            <li>Established interaction and visual differentiation rules</li>
+          </ul>
         </div>
         <div>
-          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Impact</div>
-          <div class="leading-relaxed">Expanded palette from 32 to 84 WCAG-compliant colors supporting data visualization. Reduced type styles from 11 to 7 with clear hierarchy. 7 production components shipped using updated system. Token Studio integration enables design-to-code sync for modern IDEs.</div>
+          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Impact</div>
+          <ul class="text-base leading-loose list-disc pl-5">
+            <li>Expanded palette from 32 to 84 WCAG-compliant colors supporting data visualization</li>
+            <li>Reduced type styles from 11 to 7 with clear hierarchy</li>
+            <li>7 production components shipped using updated system</li>
+            <li>Token Studio integration enables design-to-code sync for modern IDEs</li>
+          </ul>
         </div>
       </div>
     </header>
 
     <!-- Story -->
-    <section class="mb-30 md:mb-20 max-w-3xl">
-      <p class="text-lg leading-relaxed mb-6">
+    <section class="mb-16 md:mb-20 lg:mb-24 max-w-3xl">
+      <p class="leading-loose mb-6">
         When I joined, Implentio's design system had been built for MVP based on founder intuition. As I redesigned the core reconciliation workflow, patterns surfaced: accessibility issues, unclear interaction affordances, layouts prioritizing whitespace over scan efficiency in data-heavy views.
       </p>
-      <p class="text-lg leading-relaxed mb-6">
+      <p class="leading-loose">
         I restructured the system using Token Studio, separating primitives from semantic intent and creating a stable contract between design and code. This wasn't about perfection. It was about removing friction, supporting clarity, and positioning design to move faster without pulling engineering into every visual change. The system is strong without being rigid, ready to adapt as the business learns and shifts.
       </p>
     </section>
 
     <!-- Image 1: Primitive Colors with Token Studio panel (COVER) -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-design-system/implentio-ds-01-color-primatives.png" alt="Primitive Colors with Token Studio panel" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-design-system/implentio-design-system-cover.png" alt="Implentio Design System Evolution" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 2: System Colors -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-design-system/implentio-ds-02-color-system.png" alt="System Colors" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-design-system/implentio-ds-02-color-system.png" alt="System Colors" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 3: Interactive vs Non-Interactive Rules (Before/After) -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-design-system/implentio-ds-03-interaction-rules.png" alt="Interactive vs Non-Interactive Rules - Before and After comparison" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-design-system/implentio-ds-03-interaction-rules.png" alt="Interactive vs Non-Interactive Rules - Before and After comparison" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 4: Status Switcher documentation -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-design-system/implentio-ds-04-status-switcher-documentation.png" alt="Status Switcher documentation" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-design-system/implentio-ds-04-status-switcher-documentation.png" alt="Status Switcher documentation" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 5: Page Header documentation -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-design-system/implentio-ds-05-page-header-documentation.png" alt="Page Header documentation" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-design-system/implentio-ds-05-page-header-documentation.png" alt="Page Header documentation" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 6: Invoice list with filters (REUSED FROM SALES DEMO) -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-redesign-demo/implentio-demo-02-invoice-list.png" alt="Invoice list with filters - Design system in use" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-redesign-demo/implentio-demo-02-invoice-list.png" alt="Invoice list with filters - Design system in use" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 7: Order Details (REUSED FROM SALES DEMO) -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-redesign-demo/implentio-demo-06-order-details.png" alt="Order Details - Design system in use" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-redesign-demo/implentio-demo-06-order-details.png" alt="Order Details - Design system in use" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Image 8: Data Visualization -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#EEEBFF]">
-        <img src="portfolio-images/implentio-design-system/implentio-ds-08-data-visualization.png" alt="Data visualization colors in analytics dashboard" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#FBFCFD] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/implentio-design-system/implentio-ds-08-data-visualization.png" alt="Data visualization colors in analytics dashboard" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
     <!-- Footer / Navigation -->
-    <footer class="pt-20 border-t border-gray-200">
+    <footer class="pt-20">
       <a href="index.html" class="text-sm text-gray-500 hover:text-gray-900">← Back to Portfolio</a>
     </footer>
 
@@ -207,7 +259,7 @@
       const isCurrent = study.key === projectKey;
       const link = document.createElement('a');
       link.href = isCurrent ? '#' : study.url;
-      link.className = 'case-study-link block px-4 py-3 text-base rounded ' + (isCurrent ? 'current' : '');
+      link.className = 'case-study-link block py-3 text-base rounded ' + (isCurrent ? 'current' : '');
       const title = document.createElement('div');
       title.className = 'font-medium mb-1';
       title.textContent = studyConfig.homepageCardTitle;

@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-title="built">Loading...</title>
+  <link rel="icon" type="image/svg+xml" href="portfolio-images/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
   <script src="titles-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Test Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
     /* Video controls on hover only */
     video {
       cursor: pointer;
@@ -93,12 +91,65 @@
     .social-link:hover {
       background-color: #f3f4f6;
     }
+
+    /* Nav text styles - match homepage */
+    .nav-text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #949494;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .nav-text:hover::after {
+      opacity: 1;
+    }
+
+    .nav-text.active::after {
+      background-color: #000;
+      opacity: 1;
+    }
+
+    /* Company name color */
+    [data-company-name="built"] {
+      color: #0C66ED;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900">
 
-  <!-- Hamburger Button -->
-  <button class="hamburger-btn fixed top-10 right-10 md:top-14 md:right-14 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
+  <!-- Left Sidebar Navigation (Desktop) -->
+  <nav class="hidden lg:flex fixed left-8 xl:left-12 top-0 h-screen flex-col items-center justify-between pt-16 pb-10 xl:pb-14 z-50">
+    <!-- Logo -->
+    <div>
+      <a href="index.html">
+        <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="h-10 md:h-12">
+      </a>
+    </div>
+
+    <!-- Primary Nav - Section Links -->
+    <div class="flex flex-col space-y-2 items-center w-20">
+      <a href="index.html" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Home</span>
+      </a>
+      <a href="index.html#work" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Work</span>
+      </a>
+      <a href="index.html#about" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">About</span>
+      </a>
+      <a href="index.html#contact" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
+        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Contact</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Mobile Hamburger Menu -->
+  <button class="lg:hidden hamburger-btn fixed top-6 md:top-10 right-6 md:right-10 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700">
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -109,22 +160,24 @@
   <!-- Menu Overlay -->
   <div class="menu-overlay" id="menuOverlay" onclick="closeMenuOnBackdrop(event)">
     <div class="menu-content" onclick="event.stopPropagation()">
-      <!-- Close Button -->
-      <button class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100 transition-colors" onclick="toggleMenu()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
+      <!-- Logo and close button header -->
+      <div class="flex items-center justify-between mb-8 pb-6 border-b border-gray-200">
+        <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="w-5 h-auto">
+        <button class="w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100 transition-colors" onclick="toggleMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
 
       <!-- Navigation Links -->
       <div class="mb-8">
-        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Navigate</h3>
         <div class="space-y-2">
-          <a href="index.html" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Home</a>
-          <a href="index.html#work" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Work</a>
-          <a href="index.html#about" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">About</a>
-          <a href="index.html#contact" class="block px-4 py-3 text-base rounded hover:bg-gray-50 transition-colors">Contact</a>
+          <a href="index.html" class="block py-3 text-base hover:bg-gray-50 transition-colors">Home</a>
+          <a href="index.html#work" class="block py-3 text-base hover:bg-gray-50 transition-colors">Work</a>
+          <a href="index.html#about" class="block py-3 text-base hover:bg-gray-50 transition-colors">About</a>
+          <a href="index.html#contact" class="block py-3 text-base hover:bg-gray-50 transition-colors">Contact</a>
         </div>
       </div>
 
@@ -163,113 +216,105 @@
     </div>
   </div>
 
-  <div class="max-w-screen-xl mx-auto px-15 py-30 md:px-6 md:py-20">
+  <div class="case-study-text px-6 md:px-10 py-6 md:py-10 lg:pl-[20vw] lg:pr-16 lg:py-16">
 
     <!-- Header -->
-    <header class="mb-30 md:mb-20">
-      <h1 class="text-9xl md:text-8xl font-medium leading-[0.95] mb-4 tracking-tight" data-case-study-h1="built">Payment Management Platform</h1>
-      <p class="text-2xl md:text-xl text-gray-500 mb-12 md:mb-10" data-company-name="built">Built Technologies</p>
-      <div class="grid grid-cols-2 gap-12 md:gap-6 text-sm">
+    <header class="mb-12 md:mb-16 lg:mb-20">
+      <p class="text-sm uppercase tracking-wider font-medium leading-none mb-4" data-company-name="built">Built Technologies</p>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium leading-none xl:leading-[1.15] mb-12 md:mb-16 lg:mb-20 tracking-tight" data-case-study-h1="built">Payment Management Platform</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
         <div>
-          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Role</div>
-          <div class="leading-relaxed">End-to-end experience design for developers, general contractors, and subcontractors. Collaborated with PM on product strategy, designed and shipped multiple features validated through user research.</div>
+          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Role</div>
+          <ul class="text-base leading-loose list-disc pl-5">
+            <li>End-to-end experience design for developers, general contractors, and subcontractors</li>
+            <li>Collaborated with PM on product strategy, designed and shipped multiple features validated through user research</li>
+          </ul>
         </div>
         <div>
-          <div class="text-gray-500 mb-3 uppercase tracking-wide text-xs">Impact</div>
-          <div class="leading-relaxed">Subcontractors got paid in 27 days vs. 55-day industry average (51% faster). $290M processed across 6,000+ organizations in 18 months. Payment management became the #1 feature in sales demos. Solved "unsolvable" lower-tier lien waiver collection problem. Created shared platform language across entire construction payment chain.</div>
+          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Impact</div>
+          <ul class="text-base leading-loose list-disc pl-5">
+            <li>Subcontractors got paid in 27 days vs. 55-day industry average (51% faster)</li>
+            <li>$290M processed across 6,000+ organizations in 18 months</li>
+            <li>Solved "unsolvable" lower-tier lien waiver collection problem</li>
+          </ul>
         </div>
       </div>
     </header>
 
     <!-- Story -->
-    <section class="max-w-3xl mb-30 md:mb-20">
-      <p class="text-xl md:text-lg leading-relaxed mb-6">When I joined Built, they'd spent a decade focused on lenders. Contractor and subcontractor experiences were designed in silos, creating fragmentation. Through mental modeling, I uncovered the Built Chain insight: developers, contractors, and subs shared nearly identical jobs (collect docs, package payment requests, get paid, pay it forward).</p>
+    <section class="max-w-3xl mb-16 md:mb-20 lg:mb-24">
+      <p class="leading-loose mb-6">When I joined Built, they'd spent a decade focused on lenders. Contractor and subcontractor experiences were designed in silos, creating fragmentation. Through mental modeling, I uncovered the Built Chain insight: developers, contractors, and subs shared nearly identical jobs (collect docs, package payment requests, get paid, pay it forward).</p>
 
-      <p class="text-xl md:text-lg leading-relaxed mb-6">I aligned these experiences so Built could move faster by reusing shared functionality, and users could speak the same visual and operational language when collaborating. The breakthrough: we could decouple documents from requirements, giving every stakeholder instant visibility instead of waiting weeks for paper to move up the chain.</p>
+      <p class="leading-loose">I aligned these experiences so Built could move faster by reusing shared functionality, and users could speak the same visual and operational language when collaborating. The breakthrough: we could decouple documents from requirements, giving every stakeholder instant visibility instead of waiting weeks for paper to move up the chain.</p>
     </section>
 
     <!-- Images -->
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-01-project-overview.png" alt="Project Overview Dashboard" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-cover.png" alt="Built Payment Management Platform" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-02-draws-list.png" alt="Draw Requests List View" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-02-draws-list.png" alt="Draw Requests List View" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-1 gap-10 md:gap-20 mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-03-sources-uses.png" alt="Sources and Uses Detail - Developer view" class="w-full h-auto block">
-      </div>
-
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-05-draw-error-prevention.png" alt="Draw Error Prevention - General Contractor view" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-03-sources-uses.png" alt="Sources and Uses Detail - Developer view" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-04-link-payables.png" alt="Link Payables Side Panel" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-05-draw-error-prevention.png" alt="Draw Error Prevention - General Contractor view" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="aspect-[16/10] w-full bg-[#F6F8FB] border border-[#E0EDFF] rounded-[30px] md:rounded-[20px] sm:rounded-[8px] flex items-center justify-center mb-30 md:mb-20 overflow-hidden">
-      <video controls playsinline preload="metadata" loop muted autoplay class="max-h-[75%] max-w-[90%] border border-[#DFE1E5] rounded-[7.5px] shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-04-link-payables.png" alt="Link Payables Side Panel" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
+    </div>
+
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <video controls playsinline preload="metadata" loop muted autoplay class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
         <source src="portfolio-images/built/built-06-payment-flow.mov" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
 
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-07-payment-protection.png" alt="Payment Protection Modal" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-07-payment-protection.png" alt="Payment Protection Modal" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-08-document-review.png" alt="Document Review Interface" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-08-document-review.png" alt="Document Review Interface" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-09-requirements-setup.png" alt="Requirements Setup Wizard" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-09-requirements-setup.png" alt="Requirements Setup Wizard" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="mb-30 md:mb-20">
-      <div class="overflow-hidden rounded-[30px] md:rounded-[20px] sm:rounded-[8px] border border-[#E0EDFF]">
-        <img src="portfolio-images/built/built-10-portfolio-list.png" alt="Portfolio List" class="w-full h-auto block">
-      </div>
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <img src="portfolio-images/built/built-10-portfolio-list.png" alt="Portfolio List" class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
     </div>
 
-    <div class="aspect-[16/10] w-full bg-[#F6F8FB] border border-[#E0EDFF] rounded-[30px] md:rounded-[20px] sm:rounded-[8px] flex items-center justify-center mb-30 md:mb-20 overflow-hidden">
-      <video controls playsinline preload="metadata" loop muted autoplay class="max-h-[75%] max-w-[90%] border border-[#DFE1E5] rounded-[7.5px] shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
+    <div class="w-full aspect-[16/10] bg-[#F6F8FB] rounded-lg flex items-center justify-center mb-16 md:mb-20 lg:mb-24 overflow-hidden">
+      <video controls playsinline preload="metadata" loop muted autoplay class="max-h-[75%] max-w-[90%] rounded-[10px]" style="border: 2px solid #DFE1E5; object-fit: contain; box-shadow: 0 179px 50px 0 rgba(0, 0, 0, 0.00), 0 115px 46px 0 rgba(0, 0, 0, 0.01), 0 64px 39px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);">
         <source src="portfolio-images/built/built-11-billing-periods.mov" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
 
     <!-- Testimonials -->
-    <section class="max-w-3xl my-30 md:my-20 py-15 border-t border-b border-gray-200">
-      <blockquote class="mb-12 last:mb-0 text-lg leading-relaxed text-gray-700 italic">
-        "Before Built, we spent 1–2 hours tracking down compliance docs and cutting checks. Now we can use that time to focus on project financials and see what's going on."
-        <cite class="block mt-3 text-sm not-italic text-gray-500">Melissa Loftin, Project Accountant at Waltz Construction</cite>
-      </blockquote>
+    <section class="max-w-3xl my-16 md:my-20 lg:my-24 py-8 md:py-12">
+      <div class="mb-14 last:mb-0">
+        <p class="leading-loose mb-2">"Before Built, we spent 1–2 hours tracking down compliance docs and cutting checks. Now we can use that time to focus on project financials and see what's going on."</p>
+        <p class="leading-loose">—<span class="font-medium">Melissa Loftin, Project Accountant at Waltz Construction</span></p>
+      </div>
 
-      <blockquote class="mb-12 last:mb-0 text-lg leading-relaxed text-gray-700 italic">
-        "Once subcontractors see it work flawlessly the first time and get their money faster, they're happy we switched."
-        <cite class="block mt-3 text-sm not-italic text-gray-500">Lisa Augusto, Project Accountant</cite>
-      </blockquote>
+      <div class="mb-14 last:mb-0">
+        <p class="leading-loose mb-2">"Once subcontractors see it work flawlessly the first time and get their money faster, they're happy we switched."</p>
+        <p class="leading-loose">—<span class="font-medium">Lisa Augusto, Project Accountant</span></p>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="mt-30 md:mt-20 pt-15 border-t border-gray-200">
+    <footer class="mt-30 md:mt-20 pt-15">
       <a href="index.html" class="text-gray-900 no-underline text-base hover:opacity-60">← Back to all work</a>
     </footer>
 

@@ -1,0 +1,114 @@
+/**
+ * GLOBAL TYPOGRAPHY SYSTEM
+ * Single source of truth for all text styles
+ */
+
+/* Font faces */
+@font-face {
+  font-family: 'Söhne';
+  src: url('fonts/test-soehne-buch.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Söhne';
+  src: url('fonts/test-soehne-kraftig.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Söhne';
+  src: url('fonts/test-soehne-dreiviertelfett.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Paragraph text styles - applied globally */
+p, ul, ol {
+  font-size: 1.125rem; /* 18px - base */
+  line-height: 1.75;
+}
+
+/* Case study body text - smaller starting size, relaxed leading, scales across breakpoints */
+.case-study-text p:not(.text-sm):not(.text-base),
+.case-study-text ul:not(.text-sm):not(.text-base),
+.case-study-text ol:not(.text-sm):not(.text-base) {
+  font-size: 1rem; /* 16px - base */
+  line-height: 1.75; /* loose */
+  color: #1f2937; /* gray-800 */
+}
+
+@media (min-width: 768px) {
+  .case-study-text p:not(.text-sm):not(.text-base),
+  .case-study-text ul:not(.text-sm):not(.text-base),
+  .case-study-text ol:not(.text-sm):not(.text-base) {
+    font-size: 1.125rem; /* 18px - md */
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-study-text p:not(.text-sm):not(.text-base),
+  .case-study-text ul:not(.text-sm):not(.text-base),
+  .case-study-text ol:not(.text-sm):not(.text-base) {
+    font-size: 1.25rem; /* 20px - lg */
+  }
+}
+
+@media (min-width: 1280px) {
+  .case-study-text p:not(.text-sm):not(.text-base),
+  .case-study-text ul:not(.text-sm):not(.text-base),
+  .case-study-text ol:not(.text-sm):not(.text-base) {
+    font-size: 1.375rem; /* 22px - xl */
+  }
+}
+
+
+@media (min-width: 768px) {
+  p, ul, ol {
+    font-size: 1.25rem; /* 20px - md */
+  }
+}
+
+@media (min-width: 1024px) {
+  p, ul, ol {
+    font-size: 1.375rem; /* 22px - lg (intermediate step) */
+  }
+}
+
+@media (min-width: 1280px) {
+  p, ul, ol {
+    font-size: 1.5rem; /* 24px - xl */
+  }
+}
+
+/*
+ * H1 - Page Titles
+ * Usage: Your name (homepage), case study titles
+ * Classes: text-7xl md:text-8xl lg:text-9xl font-medium leading-tight tracking-tight
+ */
+
+/*
+ * H2 - Section Headings
+ * Usage: Section headings (homepage), case study company names
+ * Classes: text-6xl md:text-5xl font-medium leading-tight tracking-tight
+ */
+
+/*
+ * Label - Small Caps Text
+ * Usage: Nav buttons, homepage company names, case study role/impact labels
+ * Classes: text-sm uppercase tracking-wider font-medium text-gray-500 leading-none
+ */
+
+/*
+ * Paragraph - Body Text
+ * Usage: All descriptions, paragraphs, body content throughout site
+ * Classes: text-lg md:text-xl leading-loose
+ * Leading: 2.0
+ */
