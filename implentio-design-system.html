@@ -168,44 +168,6 @@
     // Update company name
     const company = document.querySelector('[data-company-name="' + projectKey + '"]');
     if (company) company.textContent = config.companyName;
-
-    // Hamburger Menu Functionality
-    const caseStudies = [
-      { key: 'built', url: 'built-payment-management.html' },
-      { key: 'implentioRedesign', url: 'implentio-redesign-and-demo.html' },
-      { key: 'implentioDesignSystem', url: 'implentio-design-system.html' },
-      { key: 'bambee', url: 'bambee-employment-termination.html' }
-    ];
-    const caseStudyLinksContainer = document.getElementById('caseStudyLinks');
-    caseStudies.forEach(study => {
-      const studyConfig = TITLES[study.key];
-      const isCurrent = study.key === projectKey;
-      const link = document.createElement('a');
-      link.href = isCurrent ? '#' : study.url;
-      link.className = 'case-study-link block py-3 text-base rounded ' + (isCurrent ? 'current' : '');
-      const title = document.createElement('div');
-      title.className = 'font-medium mb-1';
-      title.textContent = studyConfig.homepageCardTitle;
-      const indicator = document.createElement('span');
-      indicator.className = 'text-xs text-gray-500 ml-2';
-      indicator.textContent = isCurrent ? '(You are here)' : '';
-      title.appendChild(indicator);
-      link.appendChild(title);
-      caseStudyLinksContainer.appendChild(link);
-    });
-    function toggleMenu() {
-      const overlay = document.getElementById('menuOverlay');
-      overlay.classList.toggle('active');
-      document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
-    }
-    function closeMenuOnBackdrop(event) {
-      if (event.target.id === 'menuOverlay') toggleMenu();
-    }
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.getElementById('menuOverlay').classList.contains('active')) {
-        toggleMenu();
-      }
-    });
   </script>
 </body>
 </html>

@@ -140,8 +140,6 @@
           <ul class="leading-loose lg:!text-base lg:!leading-loose list-disc pl-5">
             <li>Freed 2-3 weeks of engineering to focus on onboarding (the actual bottleneck blocking contracted revenue)</li>
             <li>Sales now demos with current workflows, authentic data, and production-ready interactions</li>
-            <li>Built in 100 hours using Figma Make + Claude AI</li>
-            <li>Created 6 new reusable React components extending design system</li>
           </ul>
         </div>
       </div>
@@ -230,68 +228,6 @@
     // Update company name
     const company = document.querySelector('[data-company-name="' + projectKey + '"]');
     if (company) company.textContent = config.companyName;
-
-    // Hamburger Menu Functionality
-    const caseStudies = [
-      { key: 'built', url: 'built-payment-management.html' },
-      { key: 'implentioRedesign', url: 'implentio-redesign-and-demo.html' },
-      { key: 'implentioDesignSystem', url: 'implentio-design-system.html' },
-      { key: 'bambee', url: 'bambee-employment-termination.html' }
-    ];
-
-    // Populate case study links
-    const caseStudyLinksContainer = document.getElementById('caseStudyLinks');
-    caseStudies.forEach(study => {
-      const studyConfig = TITLES[study.key];
-      const isCurrent = study.key === projectKey;
-
-      const link = document.createElement('a');
-      link.href = isCurrent ? '#' : study.url;
-      link.className = 'case-study-link block py-3 text-base rounded ' + (isCurrent ? 'current' : '');
-
-      const title = document.createElement('div');
-      title.className = 'font-medium mb-1';
-      title.textContent = studyConfig.homepageCardTitle;
-
-      const indicator = document.createElement('span');
-      indicator.className = 'text-xs text-gray-500 ml-2';
-      indicator.textContent = isCurrent ? '(You are here)' : '';
-
-      title.appendChild(indicator);
-      link.appendChild(title);
-
-      caseStudyLinksContainer.appendChild(link);
-    });
-
-    // Toggle menu function
-    function toggleMenu() {
-      const overlay = document.getElementById('menuOverlay');
-      overlay.classList.toggle('active');
-
-      // Prevent body scroll when menu is open
-      if (overlay.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    }
-
-    // Close menu when clicking on backdrop
-    function closeMenuOnBackdrop(event) {
-      if (event.target.id === 'menuOverlay') {
-        toggleMenu();
-      }
-    }
-
-    // Close menu with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const overlay = document.getElementById('menuOverlay');
-        if (overlay.classList.contains('active')) {
-          toggleMenu();
-        }
-      }
-    });
   </script>
 </body>
 </html>
