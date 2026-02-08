@@ -1,0 +1,66 @@
+<!-- Left Sidebar Navigation (Desktop) -->
+<nav class="hidden lg:flex fixed left-12 top-0 h-screen flex-col items-start justify-between pt-12 pb-12 xl:left-14 xl:pt-14 xl:pb-14 2xl:left-16 2xl:pt-16 2xl:pb-16 z-50">
+  <!-- Logo -->
+  <div>
+    <a href="index.html">
+      <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="h-16">
+    </a>
+  </div>
+
+  <!-- Primary Nav - Section Links -->
+  <div class="flex flex-col space-y-2 overflow-visible">
+    <a href="index.html" class="nav-link flex items-center px-1 py-2 group" data-nav="home">
+      <span class="nav-text text-sm uppercase tracking-wider font-medium leading-[1.05] relative text-gray-500 transition-colors">Home</span>
+    </a>
+    <a href="index.html#work" class="nav-link flex items-center px-1 py-2 group" data-nav="work">
+      <span class="nav-text text-sm uppercase tracking-wider font-medium leading-[1.05] relative text-gray-500 transition-colors">Work</span>
+    </a>
+
+    <!-- Case Study Submenu (will be populated by JavaScript) -->
+    <div id="case-study-submenu" class="flex flex-col space-y-2"></div>
+
+    <a href="index.html#about" class="nav-link flex items-center px-1 py-2 group" data-nav="about">
+      <span class="nav-text text-sm uppercase tracking-wider font-medium leading-[1.05] relative text-gray-500 transition-colors">About</span>
+    </a>
+    <a href="index.html#contact" class="nav-link flex items-center px-1 py-2 group" data-nav="contact">
+      <span class="nav-text text-sm uppercase tracking-wider font-medium leading-[1.05] relative text-gray-500 transition-colors">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Mobile Hamburger Menu -->
+<button class="lg:hidden hamburger-btn fixed top-6 md:top-10 right-6 md:right-10 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700">
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+
+<!-- Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenuOnBackdrop(event)">
+  <div class="menu-content relative" onclick="event.stopPropagation()">
+    <!-- Close button (absolute positioned) -->
+    <button class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100 transition-colors" onclick="toggleMenu()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <!-- Navigation Links (matching desktop structure) -->
+    <div class="flex flex-col space-y-2">
+      <a href="index.html" class="block px-1 py-2 text-sm uppercase tracking-wider font-medium text-gray-900 hover:text-gray-500 transition-colors">Home</a>
+      <a href="index.html#work" class="block px-1 py-2 text-sm uppercase tracking-wider font-medium text-gray-900 hover:text-gray-500 transition-colors">Work</a>
+
+      <!-- Case Study Submenu (always visible in mobile) -->
+      <div id="mobile-case-study-submenu" class="flex flex-col space-y-2 pl-4">
+        <!-- Will be populated by JavaScript -->
+      </div>
+
+      <a href="index.html#about" class="block px-1 py-2 text-sm uppercase tracking-wider font-medium text-gray-900 hover:text-gray-500 transition-colors">About</a>
+      <a href="index.html#contact" class="block px-1 py-2 text-sm uppercase tracking-wider font-medium text-gray-900 hover:text-gray-500 transition-colors">Contact</a>
+    </div>
+
+  </div>
+</div>

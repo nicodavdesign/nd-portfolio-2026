@@ -1,0 +1,114 @@
+/**
+ * Navigation Component Styles
+ * Shared styles for the reusable navigation component
+ */
+
+/* Hamburger Menu Styles */
+.hamburger-btn {
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-content {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.social-link {
+  transition: all 0.2s ease;
+}
+
+.social-link:hover {
+  background-color: #f3f4f6;
+}
+
+/* Remove default link underlines */
+.nav-link {
+  text-decoration: none;
+}
+
+/* Nav text styles - match homepage */
+.nav-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #949494;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.nav-text:hover::after {
+  opacity: 1;
+}
+
+/* Show underline on Work when on case study pages */
+.nav-text[style*="opacity: 1"]::after {
+  opacity: 1;
+}
+
+/* Case study link hover underline - only apply to span elements in nav */
+span.case-study-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #949494;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+span.case-study-text:hover::after {
+  opacity: 1;
+}
+
+/* Exclude all nav-related links from getting default underlines - they have their own hover styles */
+nav a {
+  text-decoration: none !important;
+}
+
+.menu-overlay a {
+  text-decoration: none !important;
+}
+
+/* Simple underline for content links (email, contact info, footer links, etc.) */
+/* But exclude work cards and any nav-related elements */
+a:not(.nav-link):not([class*="social-link"]):not([class*="case-study-link"]):not(.work-card):not(.hamburger-btn):hover {
+  text-decoration: underline;
+}
+
+.nav-text.active::after {
+  background-color: #000;
+  opacity: 1;
+}

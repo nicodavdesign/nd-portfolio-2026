@@ -6,8 +6,10 @@
   <title data-title="bambee">Loading...</title>
   <link rel="icon" type="image/svg+xml" href="portfolio-images/favicon.svg">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav-styles.css">
   <script src="titles-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="nav-loader.js"></script>
   <style>
     /* Hamburger Menu Styles */
     .hamburger-btn { transition: all 0.3s ease; }
@@ -33,7 +35,7 @@
     .nav-text::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -2px;
       left: 0;
       right: 0;
       height: 2px;
@@ -59,98 +61,14 @@
 </head>
 <body class="bg-white text-gray-900">
 
-  <!-- Left Sidebar Navigation (Desktop) -->
-  <nav class="hidden lg:flex fixed left-8 xl:left-12 top-0 h-screen flex-col items-center justify-between pt-16 pb-10 xl:pb-14 z-50">
-    <!-- Logo -->
-    <div>
-      <a href="index.html">
-        <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="h-16">
-      </a>
-    </div>
+  <!-- Navigation loaded via nav-loader.js -->
 
-    <!-- Primary Nav - Section Links -->
-    <div class="flex flex-col space-y-2 items-center w-20">
-      <a href="index.html" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
-        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Home</span>
-      </a>
-      <a href="index.html#work" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
-        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Work</span>
-      </a>
-      <a href="index.html#about" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
-        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">About</span>
-      </a>
-      <a href="index.html#contact" class="nav-link w-full min-h-8 flex items-center justify-center px-1 group">
-        <span class="nav-text p-0.5 text-sm uppercase tracking-wider font-medium leading-none relative text-gray-500 transition-colors">Contact</span>
-      </a>
-    </div>
-  </nav>
-
-  <!-- Hamburger Button -->
-  <button class="lg:hidden hamburger-btn fixed top-6 md:top-10 right-6 md:right-10 z-50 w-12 h-12 flex items-center justify-center border border-gray-300 rounded bg-white" onclick="toggleMenu()">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-700">
-      <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
-    </svg>
-  </button>
-
-  <!-- Menu Overlay -->
-  <div class="menu-overlay" id="menuOverlay" onclick="closeMenuOnBackdrop(event)">
-    <div class="menu-content" onclick="event.stopPropagation()">
-      <button class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100 transition-colors" onclick="toggleMenu()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-      <!-- Logo -->
-      <div class="mb-8">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <line x1="9" y1="9" x2="15" y2="15"/>
-          <line x1="15" y1="9" x2="9" y2="15"/>
-        </svg>
-      </div>
-      <div class="mb-8">
-        <div class="space-y-2">
-          <a href="index.html" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Home</a>
-          <a href="index.html#work" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Work</a>
-          <a href="index.html#about" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">About</a>
-          <a href="index.html#contact" class="block py-3 text-base rounded hover:bg-gray-50 transition-colors">Contact</a>
-        </div>
-      </div>
-      <div class="mb-8 pb-8 border-b border-gray-200">
-        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Case Studies</h3>
-        <div class="space-y-2" id="caseStudyLinks"></div>
-      </div>
-      <div>
-        <h3 class="text-xs font-medium uppercase tracking-wide text-gray-500 mb-4">Connect</h3>
-        <div class="flex gap-3">
-          <a href="https://www.linkedin.com/in/nicoledavenport/" target="_blank" rel="noopener noreferrer" class="social-link w-10 h-10 flex items-center justify-center rounded">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-gray-600">
-              <path d="M4.983 3.5C4.983 4.60457 4.08857 5.5 2.984 5.5C1.87943 5.5 0.984 4.60457 0.984 3.5C0.984 2.39543 1.87943 1.5 2.984 1.5C4.08857 1.5 4.983 2.39543 4.983 3.5Z" />
-              <path d="M0.999 8.5H5V22.5H0.999V8.5Z" />
-              <path d="M8.5 8.5H12.333V10.311H12.389C12.914 9.311 14.224 8.255 16.199 8.255C20.071 8.255 21 10.803 21 14.161V22.5H16.999V15.156C16.999 13.403 16.967 11.161 14.599 11.161C12.199 11.161 11.833 13.066 11.833 15.031V22.5H7.832V8.5H8.5Z" />
-            </svg>
-          </a>
-          <a href="mailto:Nicole.L.Davenport@gmail.com" class="social-link w-10 h-10 flex items-center justify-center rounded">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-600">
-              <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-          </a>
-          <a href="https://github.com/nicodavdesign" target="_blank" rel="noopener noreferrer" class="social-link w-10 h-10 flex items-center justify-center rounded">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-gray-600">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="case-study-text px-6 md:px-10 py-6 md:py-10 lg:pl-[20vw] lg:pr-16 lg:py-16">
+  <div class="case-study-text px-6 md:px-10 py-6 md:py-10 lg:pl-[25vw] lg:pr-13 lg:py-12 xl:pl-[22vw] xl:pr-16 xl:py-14 2xl:pr-18 2xl:py-16">
 
     <!-- Header -->
     <header class="mb-12 md:mb-16 lg:mb-20">
       <p class="text-sm uppercase tracking-wider font-medium leading-none mb-4" data-company-name="bambee">Bambee</p>
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] xl:leading-[1.15] mb-12 md:mb-16 lg:mb-20 tracking-tight" data-case-study-h1="bambee">Bambee Employment Termination Workflow</h1>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium leading-none xl:leading-[1.15] mb-12 md:mb-16 lg:mb-20 tracking-tight" data-case-study-h1="bambee">Bambee Employment Termination Workflow</h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
         <div>
@@ -228,7 +146,12 @@
 
     <!-- Footer -->
     <footer class="mt-16 md:mt-20 lg:mt-24 pt-8 md:pt-12">
-      <a href="index.html#work" class="relative text-base text-gray-900 no-underline after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#949494] after:opacity-0 hover:after:opacity-100 after:transition-opacity">← Back to all work</a>
+      <a href="index.html#work" class="inline-flex items-center gap-2 text-base text-gray-900 hover:underline">
+        <svg width="23" height="8" viewBox="0 0 69 23" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-900 flex-shrink-0" style="transform: scaleX(-1);">
+          <path d="M68.7 12.2C63.9667 14.5333 59.6 18.1333 55.6 23H53C53.9333 21 54.9333 19.2 56 17.6C57 16 58.0333 14.5667 59.1 13.3H0V9.9H59.1C58.0333 8.63333 57 7.2 56 5.6C54.9333 4 53.9333 2.2 53 0.2H55.6C59.6 5 63.9667 8.6 68.7 11.2V12.2Z" fill="currentColor"/>
+        </svg>
+        <span>Back to all work</span>
+      </a>
     </footer>
 
   </div>
