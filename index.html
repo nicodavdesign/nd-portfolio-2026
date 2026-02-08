@@ -279,15 +279,15 @@
 </head>
 <body class="bg-white text-gray-900">
 
-  <!-- Logo for mobile/tablet (homepage only) -->
-  <a href="index.html" class="lg:hidden fixed top-6 md:top-10 left-6 md:left-10 z-50 w-12 h-12 flex items-center justify-center">
-    <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="w-12 h-12">
-  </a>
-
   <!-- Navigation loaded via nav-loader.js (no subnav on homepage) -->
 
   <!-- Hero / Hola Section -->
-  <section id="hola" class="min-h-screen flex flex-col justify-end pb-6 md:pb-10 lg:pb-12 xl:pb-14 2xl:pb-16 mb-12 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
+  <section id="hola" class="min-h-[90vh] lg:min-h-screen flex flex-col justify-end pb-6 md:pb-10 lg:pb-12 xl:pb-14 2xl:pb-16 mb-12 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
+    <!-- Logo for mobile/tablet (scrolls with content) -->
+    <a href="index.html" class="lg:hidden block mb-auto pt-6 md:pt-10 w-12 h-12">
+      <img src="portfolio-images/logo.svg" alt="Nicole Davenport" class="w-12 h-12">
+    </a>
+
     <!-- Main content -->
     <div>
       <h1 class="text-7xl md:text-8xl lg:text-9xl font-medium leading-[1.05] xl:leading-tight mb-8 tracking-tight max-w-5xl">
@@ -295,7 +295,7 @@
       </h1>
 
       <!-- Subtitle -->
-      <p class=" max-w-3xl mb-12">
+      <p class="leading-loose lg:leading-relaxed max-w-3xl mb-12">
         Senior Product Designer bringing clarity to complex B2B workflows, designing systems where machines handle the repetitive work and people focus on what actually requires judgment.
       </p>
 
@@ -309,7 +309,7 @@
   <!-- Work -->
   <section id="work" class="min-h-[80vh] flex flex-col justify-between pt-6 md:pt-10 lg:pt-12 xl:pt-14 2xl:pt-16 pb-6 md:pb-10 lg:pb-12 xl:pb-14 2xl:pb-16 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
     <div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-12 tracking-tight">Selected Work</h2>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-48 tracking-tight">Selected Work</h2>
 
       <div class="flex flex-col gap-64">
 
@@ -320,27 +320,27 @@
             <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
               <img src="portfolio-images/built/built-cover.png" alt="Built Payment Management" class="work-card-image-mobile w-full h-auto">
             </div>
-            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+            <div class="flex items-center gap-4 mb-4 lg:mb-5">
               <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="built">Built Technologies</p>
               <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                 <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
               </svg>
             </div>
             <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="built">Built Payment Management</p>
-            <p class="" data-homepage-card-subtitle="built">Payment and compliance platform reducing payment time from 55 days to 27 days</p>
+            <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="built">Payment and compliance platform reducing payment time from 55 days to 27 days</p>
           </div>
 
           <!-- Desktop: 3-column grid layout -->
           <div class="hidden lg:grid work-card-grid">
             <div class="work-card-text">
-              <div class="flex items-center gap-4 mb-6">
+              <div class="flex items-center gap-4 mb-5">
                 <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="built">Built Technologies</p>
                 <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                   <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
                 </svg>
               </div>
               <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="built">Built Payment Management</p>
-              <p class="" data-homepage-card-subtitle="built">Payment and compliance platform reducing payment time from 55 days to 27 days</p>
+              <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="built">Payment and compliance platform reducing payment time from 55 days to 27 days</p>
             </div>
             <div class="work-card-image-wrapper">
               <div class="work-card-image-container">
@@ -357,27 +357,27 @@
             <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
               <img src="portfolio-images/implentio-redesign-demo/implentio-redesign-demo-cover.png" alt="Implentio App Redesign + Vibe-Coded Demo" class="work-card-image-mobile w-full h-auto">
             </div>
-            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+            <div class="flex items-center gap-4 mb-4 lg:mb-5">
               <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioRedesign">Implentio</p>
               <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                 <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
               </svg>
             </div>
             <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioRedesign">Implentio App Redesign + Vibe-Coded Demo</p>
-            <p class="" data-homepage-card-subtitle="implentioRedesign">Production-ready sales demo freeing engineering for mission-critical work</p>
+            <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="implentioRedesign">Production-ready sales demo freeing engineering for mission-critical work</p>
           </div>
 
           <!-- Desktop: 3-column grid layout -->
           <div class="hidden lg:grid work-card-grid">
             <div class="work-card-text">
-              <div class="flex items-center gap-4 mb-6">
+              <div class="flex items-center gap-4 mb-5">
                 <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioRedesign">Implentio</p>
                 <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                   <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
                 </svg>
               </div>
               <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioRedesign">Implentio App Redesign + Vibe-Coded Demo</p>
-              <p class="" data-homepage-card-subtitle="implentioRedesign">Production-ready sales demo freeing engineering for mission-critical work</p>
+              <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="implentioRedesign">Production-ready sales demo freeing engineering for mission-critical work</p>
             </div>
             <div class="work-card-image-wrapper">
               <div class="work-card-image-container">
@@ -394,27 +394,27 @@
             <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
               <img src="portfolio-images/implentio-design-system/implentio-design-system-cover.png" alt="Implentio Design System Evolution" class="work-card-image-mobile w-full h-auto">
             </div>
-            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+            <div class="flex items-center gap-4 mb-4 lg:mb-5">
               <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioDesignSystem">Implentio</p>
               <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                 <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
               </svg>
             </div>
             <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioDesignSystem">Implentio Design System Evolution</p>
-            <p class="" data-homepage-card-subtitle="implentioDesignSystem">Design system evolution positioning design to ship independently</p>
+            <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="implentioDesignSystem">Design system evolution positioning design to ship independently</p>
           </div>
 
           <!-- Desktop: 3-column grid layout -->
           <div class="hidden lg:grid work-card-grid">
             <div class="work-card-text">
-              <div class="flex items-center gap-4 mb-6">
+              <div class="flex items-center gap-4 mb-5">
                 <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="implentioDesignSystem">Implentio</p>
                 <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                   <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
                 </svg>
               </div>
               <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="implentioDesignSystem">Implentio Design System Evolution</p>
-              <p class="" data-homepage-card-subtitle="implentioDesignSystem">Design system evolution positioning design to ship independently</p>
+              <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="implentioDesignSystem">Design system evolution positioning design to ship independently</p>
             </div>
             <div class="work-card-image-wrapper">
               <div class="work-card-image-container">
@@ -431,27 +431,27 @@
             <div class="mb-8 lg:mb-6 overflow-hidden rounded-lg">
               <img src="portfolio-images/bambee/bambee-cover.png" alt="Bambee Employment Termination" class="work-card-image-mobile w-full h-auto">
             </div>
-            <div class="flex items-center gap-4 mb-3 lg:mb-6">
+            <div class="flex items-center gap-4 mb-4 lg:mb-5">
               <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="bambee">Bambee</p>
               <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                 <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
               </svg>
             </div>
             <p class="font-bold mb-3 lg:mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="bambee">Bambee Employment Termination Workflow</p>
-            <p class="" data-homepage-card-subtitle="bambee">Guided employee termination workflow that turned around Series B NPS</p>
+            <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="bambee">Guided employee termination workflow that turned around Series B NPS</p>
           </div>
 
           <!-- Desktop: 3-column grid layout -->
           <div class="hidden lg:grid work-card-grid">
             <div class="work-card-text">
-              <div class="flex items-center gap-4 mb-6">
+              <div class="flex items-center gap-4 mb-5">
                 <p class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none" data-company-name="bambee">Bambee</p>
                 <svg width="8" height="23" viewBox="0 0 23 69" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" style="transform: rotate(-90deg);">
                   <path d="M10.8 68.7C8.46667 63.9667 4.86667 59.6 0 55.6V53C2 53.9333 3.8 54.9333 5.4 56C7 57 8.43333 58.0333 9.7 59.1V0H13.1V59.1C14.3667 58.0333 15.8 57 17.4 56C19 54.9333 20.8 53.9333 22.8 53V55.6C18 59.6 14.4 63.9667 12 68.7H10.8Z" fill="currentColor"/>
                 </svg>
               </div>
               <p class="font-bold mb-4" style="letter-spacing: 0.015em;" data-homepage-card-title="bambee">Bambee Employment Termination Workflow</p>
-              <p class="" data-homepage-card-subtitle="bambee">Guided employee termination workflow that turned around Series B NPS</p>
+              <p class="leading-loose lg:leading-relaxed" data-homepage-card-subtitle="bambee">Guided employee termination workflow that turned around Series B NPS</p>
             </div>
             <div class="work-card-image-wrapper">
               <div class="work-card-image-container">
@@ -468,7 +468,7 @@
   <!-- About -->
   <section id="about" class="min-h-[80vh] lg:min-h-screen flex flex-col justify-between pt-6 md:pt-10 lg:pt-12 xl:pt-14 2xl:pt-16 pb-6 md:pb-10 lg:pb-12 xl:pb-14 2xl:pb-16 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
     <div class="w-full">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-12 tracking-tight">About</h2>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-48 tracking-tight">About</h2>
 
       <!-- Mobile/Tablet: Stacked layout -->
       <div class="lg:hidden">
@@ -476,10 +476,10 @@
           <img src="portfolio-images/nicole-davenport-headshot.png" alt="Nicole Davenport" class="w-full h-auto rounded-lg">
         </div>
         <div class="space-y-6">
-          <p class="">
+          <p class="leading-loose lg:leading-relaxed">
             I design products that bring clarity to complex workflows. I've worked across construction finance, HR compliance, and e-commerce operations, solving high-stakes problems in messy, interconnected systems. Before design, I ran a startup where I learned to validate assumptions, prioritize ruthlessly, and communicate clearly.
           </p>
-          <p class="">
+          <p class="leading-loose lg:leading-relaxed">
             Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. I'll be relocating from Los Angeles to Sydney in 2026.
           </p>
         </div>
@@ -488,10 +488,10 @@
       <!-- Desktop: 3-column grid layout -->
       <div class="hidden lg:grid about-grid">
         <div class="about-text">
-          <p class=" mb-6">
+          <p class="leading-loose lg:leading-normal mb-6">
             I design products that bring clarity to complex workflows. I've worked across construction finance, HR compliance, and e-commerce operations, solving high-stakes problems in messy, interconnected systems. Before design, I ran a startup where I learned to validate assumptions, prioritize ruthlessly, and communicate clearly.
           </p>
-          <p class="">
+          <p class="leading-loose lg:leading-relaxed">
             Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. I'll be relocating from Los Angeles to Sydney in 2026.
           </p>
         </div>
@@ -503,9 +503,9 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="min-h-screen flex flex-col pt-6 md:pt-10 lg:pt-12 xl:pt-14 2xl:pt-16 pb-6 md:pb-10 lg:pb-12 xl:pb-14 2xl:pb-16 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
+  <section id="contact" class="min-h-[90vh] lg:min-h-screen flex flex-col pt-6 md:pt-10 lg:pt-12 xl:pt-14 2xl:pt-16 pb-6 md:pb-10 lg:pb-12 xl:pb-14 2xl:pb-16 px-6 md:px-10 lg:px-0 lg:pl-[20vw]">
     <!-- Heading at top -->
-    <div class="mb-12">
+    <div class="mb-48">
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight">Get in Touch</h2>
     </div>
 
