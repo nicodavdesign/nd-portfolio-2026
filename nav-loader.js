@@ -46,11 +46,14 @@ function getCurrentPage() {
   const path = window.location.pathname;
   const filename = path.split('/').pop() || 'index.html';
 
-  if (filename === 'index.html' || filename === '') return 'home';
-  if (filename === 'built-payment-management.html') return 'built';
-  if (filename === 'implentio-redesign-and-demo.html') return 'implentioRedesign';
-  if (filename === 'implentio-design-system.html') return 'implentioDesignSystem';
-  if (filename === 'bambee-employment-termination.html') return 'bambee';
+  // Remove .html extension if present for comparison
+  const baseFilename = filename.replace('.html', '');
+
+  if (baseFilename === 'index' || baseFilename === '' || filename === 'index.html') return 'home';
+  if (baseFilename === 'built-payment-management') return 'built';
+  if (baseFilename === 'implentio-redesign-and-demo') return 'implentioRedesign';
+  if (baseFilename === 'implentio-design-system') return 'implentioDesignSystem';
+  if (baseFilename === 'bambee-employment-termination') return 'bambee';
 
   return 'home';
 }
