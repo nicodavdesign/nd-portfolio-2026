@@ -216,21 +216,25 @@
       line-height: 1.25;
     }
 
-    /* Contact links hover - gray-500 text and underline */
+    .contact-email a {
+      text-decoration: none !important;
+    }
+
+    /* Contact links hover - underline only */
+    .contact-link {
+      text-decoration: none !important;
+    }
+
     .contact-link::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: 2px;
       left: 0;
       right: 0;
       height: 2px;
-      background-color: #949494;
+      background-color: currentColor;
       opacity: 0;
       transition: opacity 0.2s;
-    }
-
-    .contact-link:hover {
-      color: #6b7280;
     }
 
     .contact-link:hover::after {
@@ -519,7 +523,7 @@
         </svg>
 
         <p class="contact-email mb-8">
-          <a href="mailto:hello@nicoledavenport.design" class="contact-link relative inline-block p-0.5 text-black transition-colors">hello@nicoledavenport.design</a>
+          <a href="mailto:hello@nicoledavenport.design" class="contact-link relative inline-block text-black">hello@nicoledavenport.design</a>
         </p>
         <div class="flex gap-2">
           <a href="https://www.linkedin.com/in/nicoledavenport/" target="_blank" rel="noopener noreferrer" class="contact-link relative inline-block p-0.5 text-sm uppercase tracking-wider font-medium leading-none text-black transition-colors">LinkedIn</a>
