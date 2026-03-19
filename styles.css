@@ -91,13 +91,13 @@ p, ul, ol {
 /*
  * H1 - Page Titles
  * Usage: Your name (homepage), case study titles
- * Classes: text-7xl md:text-8xl lg:text-9xl font-medium leading-tight tracking-tight
+ * Classes: text-6xl md:text-7xl lg:text-8xl font-normal leading-tight tracking-tight
  */
 
 /*
  * H2 - Section Headings
  * Usage: Section headings (homepage), case study company names
- * Classes: text-6xl md:text-5xl font-medium leading-tight tracking-tight
+ * Classes: text-2xl md:text-3xl lg:text-4xl font-normal leading-tight tracking-tight
  */
 
 /*
