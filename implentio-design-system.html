@@ -66,34 +66,46 @@
   <div class="case-study-text px-6 md:px-10 pt-7 md:pt-11 pb-6 md:pb-10 lg:pl-[25vw] lg:pr-13 lg:py-12 xl:pl-[22vw] xl:pr-16 xl:py-14 2xl:pr-18 2xl:py-16">
 
     <!-- Header -->
-    <header class="pt-3 md:pt-3 lg:pt-0 pb-6 md:pb-8 lg:pb-12">
+    <header class="pt-3 md:pt-3 lg:pt-0">
       <p class="text-sm uppercase tracking-wider font-medium leading-none mb-6 md:mb-7 lg:mb-4" data-company-name="implentioDesignSystem">Implentio</p>
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.05] xl:leading-tight mb-12 md:mb-16 lg:mb-24 tracking-tight" data-case-study-h1="implentioDesignSystem">Loading...</h1>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.1] mb-6 md:mb-8 lg:mb-12 tracking-tight" data-case-study-h1="implentioDesignSystem">Loading...</h1>
+    </header>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 max-w-4xl">
-        <div>
-          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Role</div>
-          <ul class="text-base leading-loose list-disc pl-5">
-            <li>Audited and evolved the existing design system</li>
-            <li>Introduced tokenized foundations using Token Studio enabling design-to-code sync</li>
-          </ul>
-        </div>
-        <div>
-          <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Impact</div>
-          <ul class="text-base leading-loose list-disc pl-5">
-            <li>Expanded palette to 84 WCAG-compliant colors and streamlined type styles from 11 to 7</li>
-            <li>7 production components shipped using updated system</li>
-          </ul>
+    <!-- Role & Impact -->
+    <section class="pt-6 md:pt-8 lg:pt-12 pb-6 md:pb-8 lg:pb-12">
+      <!-- Role -->
+      <div class="mb-6 md:mb-12 lg:mb-22 max-w-4xl">
+        <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-3">Role</div>
+        <p class="leading-relaxed text-gray-900">Audited and evolved the existing design system. Introduced tokenized foundations using Token Studio enabling design-to-code sync.</p>
+      </div>
+
+      <!-- Impact -->
+      <div>
+        <div class="text-sm uppercase tracking-wider font-medium text-gray-500 leading-none mb-5">Impact</div>
+
+        <!-- Impact Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl">
+          <!-- Card 1 -->
+          <div class="border border-gray-200 rounded lg:rounded-[10px] p-6 md:p-8">
+            <h2 class="text-4xl md:text-5xl font-normal leading-tight mb-4">84</h2>
+            <p class="text-base leading-relaxed text-gray-600">WCAG-compliant colors expanded from 36. Streamlined type styles from 11 to 7.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="border border-gray-200 rounded lg:rounded-[10px] p-6 md:p-8">
+            <h2 class="text-4xl md:text-5xl font-normal leading-tight mb-4">7</h2>
+            <p class="text-base leading-relaxed text-gray-600">Production components shipped using updated system</p>
+          </div>
         </div>
       </div>
-    </header>
+    </section>
 
     <!-- Story -->
     <section class="max-w-4xl pt-6 md:pt-8 lg:pt-12 pb-6 md:pb-8 lg:pb-12">
-      <p class="leading-loose mb-6">
+      <p class="leading-relaxed mb-6">
         When I joined, Implentio's design system had been built for MVP based on founder intuition. As I redesigned the core reconciliation workflow, patterns surfaced: accessibility issues, unclear interaction affordances, layouts prioritizing whitespace over scan efficiency in data-heavy views.
       </p>
-      <p class="leading-loose">
+      <p class="leading-relaxed">
         I restructured the system using Token Studio, separating primitives from semantic intent and creating a stable contract between design and code. This wasn't about perfection. It was about removing friction, supporting clarity, and positioning design to move faster without pulling engineering into every visual change. The system is strong without being rigid, ready to adapt as the business learns and shifts.
       </p>
     </section>

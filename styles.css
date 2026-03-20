@@ -33,58 +33,12 @@ body {
 /* Paragraph text styles - applied globally */
 p, ul, ol {
   font-size: 1.125rem; /* 18px - base */
-  line-height: 1.75;
-}
-
-/* Case study body text - smaller starting size, relaxed leading, scales across breakpoints */
-.case-study-text p:not(.text-sm):not(.text-base),
-.case-study-text ul:not(.text-sm):not(.text-base),
-.case-study-text ol:not(.text-sm):not(.text-base) {
-  font-size: 1rem; /* 16px - base */
-  line-height: 1.75; /* loose */
-  color: #1f2937; /* gray-800 */
+  line-height: 1.625; /* relaxed */
 }
 
 @media (min-width: 768px) {
-  .case-study-text p:not(.text-sm):not(.text-base),
-  .case-study-text ul:not(.text-sm):not(.text-base),
-  .case-study-text ol:not(.text-sm):not(.text-base) {
-    font-size: 1.125rem; /* 18px - md */
-  }
-}
-
-@media (min-width: 1024px) {
-  .case-study-text p:not(.text-sm):not(.text-base),
-  .case-study-text ul:not(.text-sm):not(.text-base),
-  .case-study-text ol:not(.text-sm):not(.text-base) {
-    font-size: 1.25rem; /* 20px - lg */
-  }
-}
-
-@media (min-width: 1280px) {
-  .case-study-text p:not(.text-sm):not(.text-base),
-  .case-study-text ul:not(.text-sm):not(.text-base),
-  .case-study-text ol:not(.text-sm):not(.text-base) {
-    font-size: 1.375rem; /* 22px - xl */
-  }
-}
-
-
-@media (min-width: 768px) {
   p, ul, ol {
-    font-size: 1.25rem; /* 20px - md */
-  }
-}
-
-@media (min-width: 1024px) {
-  p, ul, ol {
-    font-size: 1.375rem; /* 22px - lg (intermediate step) */
-  }
-}
-
-@media (min-width: 1280px) {
-  p, ul, ol {
-    font-size: 1.5rem; /* 24px - xl */
+    font-size: 1.25rem; /* 20px - md+ */
   }
 }
 
