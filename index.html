@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nicole Davenport - Senior Product Designer</title>
+  <title>Nicole Davenport - Lead Product Designer</title>
   <link rel="icon" type="image/svg+xml" href="portfolio-images/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav-styles.css">
@@ -277,7 +277,7 @@
 
       <!-- Subtitle -->
       <p class="leading-relaxed max-w-2xl">
-        Senior Product Designer bringing clarity to complex B2B workflows. Designing systems where machines handle the repetitive work and people focus on what requires judgment.
+        Lead Product Designer bringing clarity to complex B2B workflows. Designing systems where machines handle the repetitive work and people focus on what requires judgment.
       </p>
     </div>
   </section>
@@ -456,7 +456,7 @@
             I design products that bring clarity to complex workflows. I've worked across construction finance, HR compliance, and e-commerce operations, solving high-stakes problems in messy, interconnected systems. Before design, I ran a startup where I learned to validate assumptions, prioritize ruthlessly, and communicate clearly.
           </p>
           <p class="leading-relaxed">
-            Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. I'll be relocating from Los Angeles to Sydney in early 2026.
+            Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. Based in Sydney, Australia.
           </p>
         </div>
       </div>
@@ -468,7 +468,7 @@
             I design products that bring clarity to complex workflows. I've worked across construction finance, HR compliance, and e-commerce operations, solving high-stakes problems in messy, interconnected systems. Before design, I ran a startup where I learned to validate assumptions, prioritize ruthlessly, and communicate clearly.
           </p>
           <p class="leading-relaxed">
-            Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. I'll be relocating from Los Angeles to Sydney in early 2026.
+            Outside of work, you'll find me exploring new restaurants, playing soccer or pickleball, or surfing. Travel fuels my perspective. Movement keeps me grounded. Based in Sydney, Australia.
           </p>
         </div>
         <div class="about-image">
@@ -485,10 +485,8 @@
 
       <!-- Contact details -->
       <div class="mb-12 md:mb-16 lg:mb-24">
-        <p class="contact-email mb-6">
-          <a href="mailto:hello@nicoledavenport.design" class="contact-link relative inline-block text-black">hello@nicoledavenport.design</a>
-        </p>
         <div class="flex gap-2">
+          <a href="#" id="email-link" class="contact-link relative inline-block p-0.5 text-sm uppercase tracking-wider font-medium leading-none text-black transition-colors">Email</a>
           <a href="https://www.linkedin.com/in/nicoledavenport/" target="_blank" rel="noopener noreferrer" class="contact-link relative inline-block p-0.5 text-sm uppercase tracking-wider font-medium leading-none text-black transition-colors">LinkedIn</a>
           <a href="https://github.com/nicodavdesign" target="_blank" rel="noopener noreferrer" class="contact-link relative inline-block p-0.5 text-sm uppercase tracking-wider font-medium leading-none text-black transition-colors">GitHub</a>
         </div>
@@ -592,6 +590,19 @@
 
       // Initial check on page load
       updateActiveNav();
+    })();
+
+    // Email obfuscation to prevent scraping
+    (function() {
+      const emailLink = document.getElementById('email-link');
+      if (emailLink) {
+        // Construct email address from parts (harder for scrapers to detect)
+        const user = 'Nicole.L.Davenport';
+        const domain = 'gmail';
+        const tld = 'com';
+        const email = user + '@' + domain + '.' + tld;
+        emailLink.href = 'mailto:' + email + '?subject=Product%20Design%20Outreach';
+      }
     })();
 
     // Mobile Menu Toggle
